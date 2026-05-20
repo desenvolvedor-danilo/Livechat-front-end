@@ -1,0 +1,96 @@
+/* --- Novo CSS para a Lista de Contatos (contacts-container) --- */
+
+.contacts-container {
+    /* Mantém as propriedades de caixa do seu chat-container */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    min-height: 90vh;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.contact-list {
+    flex: 1;
+    padding: 0;
+    overflow-y: auto;
+    background: #fff;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.contact-item:hover {
+    background-color: #f5f6fa;
+}
+
+/* 🎯 CORREÇÃO 1: Avatar usando o AZUL primário */
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4a4ee0;
+    /* AZUL do seu tema */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-right: 15px;
+}
+
+.chat-header {
+    text-align: center;
+}
+
+.contact-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.contact-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+/* Indicador de Status */
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    /* border-radius: 50%; */
+    position: absolute;
+    top: 50%;
+    right: -25%;
+    transform: translateY(-50%);
+    /* border: 1px solid #fff; */
+}
+
+/* 🎯 CORREÇÃO 2: Status Online usando o AZUL primário */
+.status-indicator.online {
+    background-color: #4a4ee0;
+    /* AZUL do seu tema */
+}
+
+/* Status Offline */
+.status-indicator.offline {
+    background-color: #ccc;
+}
+
+/* Destaque para contato online */
+.online-contact .contact-name {
+    color: #4a4ee0;
+    font-weight: 600;
+}

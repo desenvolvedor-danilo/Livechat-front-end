@@ -1,6 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
+import "bootstrap/dist/css/bootstrap.min.css"
+import BootstrapJs from "./componentes/ui/bootstrapJs";
+import "./css/main.css"
+import "./css/globals.css";
+import "./css/list-contacts.css"
+import FirebaseServiceWorker from "./componentes/ui/workerRegistration";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,8 +22,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}>
+
+      <body>
+        <BootstrapJs />
+        <FirebaseServiceWorker />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,66 +1,27 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+
+import Link from "next/link";
+import { useLogin } from "./componentes/custom-hooks/useLogin";
 
 export default function Home() {
+  const { login, handleState, fetchLogin } = useLogin()
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <div id="main-content" className="card-form">
+        <form>
+          <h2>Login</h2>
+          <div className="form-group">
+            <input type="email" id="correio" placeholder="Digite seu email" className="form-control" name="email" value={login.email} onChange={handleState} />
+          </div>
+          <div className="form-group">
+            <input type="password" id="senha" placeholder="Digite sua senha" className="form-control" name="password" value={login.password} onChange={handleState} />
+          </div>
+          <button id="login" className="btn btn-connect" type="button" onClick={fetchLogin}>Entrar</button>
+        </form>
+        <div className="form-group">
+          <Link href="/cadastro" id="linkCadastro">Não tem uma conta? Inscreva-se</Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
