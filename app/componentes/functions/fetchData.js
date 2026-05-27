@@ -1,5 +1,5 @@
 "use client"
-import { RefreshToken } from "@/app/server-side-functions/refreshToken"
+import { RefreshToken } from "@/app/componentes/functions/refreshToken"
 export function fetchData(url, hasBody, method = "GET", headers = null, body = null, state, iterator) {
   fetch(url, hasBody ? {
     method: method,

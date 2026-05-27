@@ -2,7 +2,7 @@
 import NavBar from "../componentes/ui/navBar";
 import Image from "next/image";
 
-import { loadingContacts } from "../server-side-functions/loadingContacts";
+import { loadingContacts } from "../componentes/functions/loadingContacts";
 
 export default function contacts() {
 

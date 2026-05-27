@@ -1,4 +1,4 @@
-import { ExtractExtension } from "../utils/ExtractExtension"
+import { ExtractExtension } from "./ExtractExtension"
 
 export function ChooseElementType(msg) {
 

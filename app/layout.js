@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css"
-import BootstrapJs from "./componentes/ui/bootstrapJs";
 import "./css/main.css"
 import "./css/globals.css";
 import "./css/list-contacts.css"
@@ -26,7 +25,7 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable}`}>
 
       <body>
-        <BootstrapJs />
+        {/* <BootstrapJs /> */}
         <FirebaseServiceWorker />
         {children}
       </body>

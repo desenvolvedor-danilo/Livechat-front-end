@@ -1,20 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #f5f6fa;
     color: #333;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.navbar.navbar-expand-lg.navbar-light.bg-light {
+.navbar.navbar-expand-lg.navbar-light.bg-transparent {
     background-color: #4a4ee0;
 }
 
@@ -100,7 +91,8 @@ h2 {
     max-width: 420px;
     height: 100vh;
     background: white;
-    /* border-radius: 15px; */
+    border-radius: 15px;
+    border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     overflow: hidden;
 }
@@ -142,7 +134,7 @@ h2 {
     line-height: 1.4;
 }
 
-.absolute {
+.custom-absolute {
     position: absolute;
     left: 20px;
     opacity: 0.4;

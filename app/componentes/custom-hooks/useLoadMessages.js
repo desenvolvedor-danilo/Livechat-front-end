@@ -1,6 +1,6 @@
 "use client"
 
-import { RefreshToken } from "@/app/server-side-functions/refreshToken"
+import { RefreshToken } from "@/app/componentes/functions/refreshToken"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 

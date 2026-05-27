@@ -1,5 +1,4 @@
 "use client"
-import Link from "next/link";
 import { useNotifications } from "../componentes/custom-hooks/useNotifications";
 import NavBar from "../componentes/ui/navBar";
 export default function Notifications() {
@@ -21,17 +20,17 @@ export default function Notifications() {
         <header className="chat-header">
           <NavBar />
 
-          <div className="container-fluid">
-            <Link className="navbar-brand text-white" id="name" href="#" />
-            <button className="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon text-white"></span>
-            </button>
-            <div className="collapse navbar-collapse text-white" id="navbarNavAltMarkup">
-
-            </div>
-          </div>
+          {/* <div className="container-fluid"> */}
+          {/*   <Link className="navbar-brand text-white" id="name" href="#" /> */}
+          {/*   <button className="navbar-toggler text-white" type="button" data-bs-toggle="collapse" */}
+          {/*     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" */}
+          {/*     aria-label="Toggle navigation"> */}
+          {/*     <span className="navbar-toggler-icon text-white"></span> */}
+          {/*   </button> */}
+          {/*   <div className="collapse navbar-collapse text-white" id="navbarNavAltMarkup"> */}
+          {/**/}
+          {/*   </div> */}
+          {/* </div> */}
         </header>
         <div id="notifications" className="contact-list">
           {
