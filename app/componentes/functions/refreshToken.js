@@ -1,7 +1,7 @@
 
 export const RefreshToken = async () => {
   try {
-    const res = await fetch("/refresh/token", {
+    const res = await fetch("https://livechat-0380.onrender.com/refresh/token", {
       method: "POST",
       credentials: "include"
     }

@@ -18,7 +18,7 @@ export function useRegister() {
     }))
   }
   const handleSubmit = () => {
-    fetch("http://localhost:8080/users/create", {
+    fetch("https://livechat-0380.onrender.com/users/create", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "http://localhost:8080" },
       body: JSON.stringify(user)
