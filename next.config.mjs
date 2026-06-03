@@ -3,34 +3,35 @@ const nextConfig = {
   experimental: {
     middlewareClientMaxBodySize: 50 * 1024 * 1024,
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/users/:path*",
-  //       destination: "http://localhost:8080/users/:path*",
-  //     },
-  //
-  //     {
-  //       source: "/refresh/:path*",
-  //       destination: "http://localhost:8080/refresh/:path*",
-  //     },
-  //
-  //     {
-  //       source: "/conversas/:path*",
-  //       destination: "http://localhost:8080/conversas/:path*",
-  //     },
-  //
-  //     {
-  //       source: "/private-messages/:path*",
-  //       destination: "http://localhost:8080/private-messages/:path*",
-  //     },
-  //
-  //     {
-  //       source: "/files/:path*",
-  //       destination: "http://localhost:8080/files/:path*",
-  //     },
-  //   ];
-  // },
+  async rewrites() {
+    const BACKEND_URL = "https://livechat-0380.onrender.com"
+    return [
+      {
+        source: "/users/:path*",
+        destination: BACKEND_URL + "/users/:path*",
+      },
+
+      {
+        source: "/refresh/:path*",
+        destination: BACKEND_URL + "/refresh/:path*",
+      },
+
+      {
+        source: "/conversas/:path*",
+        destination: BACKEND_URL + "/conversas/:path*",
+      },
+
+      {
+        source: "/private-messages/:path*",
+        destination: BACKEND_URL + "/private-messages/:path*",
+      },
+
+      {
+        source: "/files/:path*",
+        destination: BACKEND_URL + "/files/:path*",
+      },
+    ];
+  },
   /* config options here */
   images: {
     remotePatterns: [{
@@ -45,7 +46,7 @@ const nextConfig = {
     remotePatterns: [{
       protocol: "https",
       hostname: "https://livechat-0380.onrender.com",
-      port: "8080",
+      //  port: "8080",
       pathname: "**",
       search: ""
     }
