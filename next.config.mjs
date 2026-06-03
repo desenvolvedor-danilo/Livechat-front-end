@@ -45,7 +45,7 @@ const nextConfig = {
 
     remotePatterns: [{
       protocol: "https",
-      hostname: "https://livechat-0380.onrender.com",
+      hostname: "livechat-0380.onrender.com",
       //  port: "8080",
       pathname: "**",
       search: ""
