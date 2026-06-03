@@ -47,8 +47,8 @@ const nextConfig = {
       protocol: "https",
       hostname: "livechat-0380.onrender.com",
       //  port: "8080",
-      pathname: "**",
-      search: ""
+      // pathname: "**",
+      // search: ""
     }
     ]
   }

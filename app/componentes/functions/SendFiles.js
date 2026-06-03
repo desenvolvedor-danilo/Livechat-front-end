@@ -22,7 +22,7 @@ export const SendFiles = async (input) => {
     }
     console.log(resp)
     const response = await resp.json()
-    console.log(response)
+    // console.log(response)
     return response
   } catch (err) {
     console.log(err)
