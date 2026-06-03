@@ -15,6 +15,7 @@ export function useLogin() {
   const fetchLogin = () => {
     fetch("https://livechat-0380.onrender.com/users/login", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(login)
     }).then(res => {
