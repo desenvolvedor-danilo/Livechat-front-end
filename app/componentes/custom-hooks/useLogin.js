@@ -13,7 +13,7 @@ export function useLogin() {
     setLogin(prev => ({ ...prev, [name]: value }))
   }
   const fetchLogin = () => {
-    fetch("https://livechat-0380.onrender.com/users/login", {
+    fetch("/users/login", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

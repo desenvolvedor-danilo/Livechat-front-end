@@ -10,7 +10,7 @@ export const useLoadMessages = () => {
   const param = useSearchParams()
   useEffect(() => {
     const to = param.get("user")
-    fetch(`https://livechat-0380.onrender.com/private-messages/find?to=${to}&from=${localStorage.getItem("email")}`, {
+    fetch(`/private-messages/find?to=${to}&from=${localStorage.getItem("email")}`, {
       credentials: "include"
     }).then(res => {
       if (res.status === 401) {

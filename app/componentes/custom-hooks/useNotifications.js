@@ -7,7 +7,7 @@ export function useNotifications() {
   const [loaded, setLoaded] = useState(0)
   const [user, setUser] = useState({})
   useEffect(() => {
-    fetch("https://livechat-0380.onrender.com/conversas/private?from=" + localStorage.getItem("email"), {
+    fetch("/conversas/private?from=" + localStorage.getItem("email"), {
       credentials: "include"
     }).then((res) => {
       if (res.status === 401) {

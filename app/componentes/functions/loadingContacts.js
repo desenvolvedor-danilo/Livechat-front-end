@@ -9,7 +9,7 @@ export const loadingContacts = () => {
   const [reload, setReload] = useState(0)
 
   useEffect(() => {
-    fetch("https://livechat-0380.onrender.com/users/findall", {
+    fetch("/users/findall", {
       method: "GET",
       credentials: "include"
     }).then((resp) => {

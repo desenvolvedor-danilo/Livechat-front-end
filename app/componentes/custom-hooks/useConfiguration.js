@@ -6,7 +6,7 @@ export function useConfiguration() {
   const [photoProfile, setPhotoProfile] = useState({})
   const [loaded, setLoaded] = useState(0)
   useEffect(() => {
-    fetch("https://livechat-0380.onrender.com/users/find-users?email=" + localStorage.getItem("email"), {
+    fetch("/users/find-users?email=" + localStorage.getItem("email"), {
       method: "GET",
       credentials: "include",
     }).then(res => {
