@@ -1,19 +1,19 @@
 
 export const SendFiles = async (input) => {
   try {
-    let resp = await fetch("https://livechat-0380.onrender.com/files/save", {
+    let resp = await fetch("/files/save", {
       method: "POST",
       body: input,
       credentials: "include",
     })
     if (resp.status === 401) {
-      await fetch("https://livechat-0380.onrender.com/refresh/token", {
+      await fetch("/refresh/token", {
         method: "POST",
         credentials: "include",
       })
         .then(async () => {
 
-          resp = await fetch("https://livechat-0380.onrender.com/files/save", {
+          resp = await fetch("/files/save", {
             method: "POST",
             body: input,
             credentials: "include",
