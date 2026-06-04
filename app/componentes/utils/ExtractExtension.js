@@ -3,6 +3,6 @@ export function ExtractExtension(element) {
     + 1, element.length);
   console.log(indexOfImage)
 
-  const extension = indexOfImage.substring(element.indexOf(".") + 1, element.length)
+  const extension = indexOfImage.substring(indexOfImage.indexOf(".") + 1, indexOfImage.length)
   return extension
 }
