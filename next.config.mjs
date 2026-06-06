@@ -4,7 +4,7 @@ const nextConfig = {
     middlewareClientMaxBodySize: 50 * 1024 * 1024,
   },
   async rewrites() {
-    const BACKEND_URL = "137.131.163.242"
+    const BACKEND_URL = "http://137.131.163.242:8080"
     return [
       {
         source: "/users/:path*",
