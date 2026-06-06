@@ -5,7 +5,7 @@ let client = null;
 export function getClient() {
   if (client) return client
 
-  const socket = new SockJS("http://137.131.163.242/buildrun-livechat-websocket?user=" + localStorage.getItem("email"));
+  const socket = new SockJS("http://137.131.163.242:8080/buildrun-livechat-websocket?user=" + localStorage.getItem("email"));
   client = new Client({
     webSocketFactory: () => socket, reconnectDelay: 5000, debug: (str) => console.log(str)
   })
