@@ -5,6 +5,7 @@ const nextConfig = {
   },
   async rewrites() {
     const BACKEND_URL = "http://137.131.163.242:8080"
+    const URL_FILE = "https://livechat-0380.onrender.com"
     return [
       {
         source: "/users/:path*",
@@ -28,7 +29,7 @@ const nextConfig = {
 
       {
         source: "/files/:path*",
-        destination: BACKEND_URL + "/files/:path*",
+        destination: URL_FILE + "/files/:path*",
       },
     ];
   },
@@ -47,8 +48,8 @@ const nextConfig = {
       protocol: "https",
       hostname: "livechat-0380.onrender.com",
       //port: "8080",
-      // pathname: "**",
-      // search: ""
+      pathname: "**",
+      search: ""
     }
     ]
   }
