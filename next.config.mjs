@@ -4,7 +4,7 @@ const nextConfig = {
     middlewareClientMaxBodySize: 50 * 1024 * 1024,
   },
   async rewrites() {
-    const BACKEND_URL = "https://livechat-0380.onrender.com"
+    const BACKEND_URL = "137.131.163.242"
     return [
       {
         source: "/users/:path*",
@@ -44,11 +44,11 @@ const nextConfig = {
     ],
 
     remotePatterns: [{
-      protocol: "https",
-      hostname: "livechat-0380.onrender.com",
-      //  port: "8080",
-      // pathname: "**",
-      // search: ""
+      protocol: "http",
+      hostname: "137.131.163.242",
+      port: "8080",
+      pathname: "**",
+      search: ""
     }
     ]
   }
