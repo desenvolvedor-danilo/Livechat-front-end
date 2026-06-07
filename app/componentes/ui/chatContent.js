@@ -45,8 +45,8 @@ export default function ChatContent() {
 
               <button id="sendPrivate" onClick={sendMessage}>➤</button>
               :
-              <button
-                onDoubleClick={startRecorder}><img src="/voice.png"
+              <button className="flex justify-center items-center h-64 w-full"
+                onDoubleClick={startRecorder}><img className="max-h-full max-w-full object-contain" src="/voice.png"
                   onClick={stopRecorder} />
               </button>
           }
