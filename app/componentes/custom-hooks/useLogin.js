@@ -26,10 +26,8 @@ export function useLogin() {
       localStorage.setItem("email", login.email)
       document.cookie = `email = ${localStorage.getItem("email")}`
 
-      console.log(document.cookie)
       router.push("/notifications")
 
-      console.log(res.text())
     })
       .catch(err => console.log(err.message))
 

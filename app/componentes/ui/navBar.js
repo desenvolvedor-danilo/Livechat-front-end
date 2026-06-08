@@ -1,34 +1,3 @@
-// "use client"
-// import Image from "next/image";
-// import Link from "next/link";
-//
-// export default function NavBar() {
-//   return (
-//     <>
-//       <h2><Image src="/favicon.png" width="150" height="80" alt="name application" /></h2>
-//       <nav className="bg-[#4a4ee0] text-white w-full" id="nav">
-//         <div className="flex items-center justify-between px-4 py-3">
-//
-//           <a className="navbar-brand text-white" id="name" href="#"></a>
-//           <button className="md:hidden flex flex-col gap-1" type="button" data-bs-toggle="collapse"
-//             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-//             aria-label="Toggle navigation">
-//             <span className="navbar-toggler-icon text-white"></span>
-//           </button>
-//           <div className="collapse navbar-collapse text-white" id="navbarNavAltMarkup">
-//             <div className="navbar-nav">
-//
-//               <Link className="nav-link" href="/notifications">Notificações</Link>
-//               <Link className="nav-link" href="/contacts">Contatos</Link>
-//               <Link className="nav-link" href="/configuration">Configurações</Link>
-//               <a className="nav-link" id="logout">Logout</a>
-//             </div>
-//           </div>
-//         </div>
-//       </nav>
-//     </>
-//   )
-// }
 "use client";
 
 import { useState } from "react";
@@ -43,7 +12,7 @@ export default function NavBar() {
       <div className="flex items-center justify-between px-4 py-3">
 
         {/* Brand */}
-        <a className="font-semibold mx-auto" href="#">
+        <a className="font-semibold mx-auto" href="/notifications">
           <Image src="/favicon.png" width="150" height="80" alt="name application" />
         </a>
 
@@ -70,13 +39,13 @@ export default function NavBar() {
 
       {/* Menu mobile (collapse) */}
       <div
-        className={`md:hidden flex flex-col gap-3 px-4 pb-3 transition-all duration-300 overflow-hidden ${open ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden flex flex-col gap-3 px-4 pb-3 transition-all duration-700 overflow-hidden ${open ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <Link href="/notifications">Notificações</Link>
-        <Link href="/contacts">Contatos</Link>
-        <Link href="/configuration">Configurações</Link>
-        <a href="#">Logout</a>
+        <Link className="hover:scale-120" href="/notifications">Notificações</Link>
+        <Link className="hover:scale-120" href="/contacts">Contatos</Link>
+        <Link className="hover:scale-120" href="/configuration">Configurações</Link>
+        <a className="hover:scale-120" href="#">Logout</a>
       </div>
     </nav>
   );

@@ -12,10 +12,13 @@ export const useMessage = () => {
   const [isSelectedFile, setIsSelectedFile] = useState(false)
   const [audioBlob, setAudioBlob] = useState(null)
 
-
+  const [clicked, setClicked] = useState(false)
   const clientSocket = useRef()
   const param = useSearchParams()
   const formadataRef = useRef(null)
+  const timerRef = useRef()
+  const [recording, setRecording] = useState(false)
+  const [timeFormated, setTimeFormated] = useState(null)
 
   const [clientMessage, setClientMessage] = useState("");
   const editMessage = (ev) => {
@@ -27,7 +30,14 @@ export const useMessage = () => {
 
   }
 
-  const startRecorder = async () => {
+  const startRecorder = async (e) => {
+
+    setRecording(true)
+    const init = Date.now()
+    setTimeFormated("0:00")
+
+    e.preventDefault()
+    setClicked(true)
 
 
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -43,26 +53,37 @@ export const useMessage = () => {
       })
       setAudioBlob(audio)
       stream.getTracks().forEach(track => track.stop());
+      setClicked(false)
+      setRecording(false)
       setEndRecording(true)
     }
     mediaRecorder.current.start()
+    timerRef.current = setInterval(() => {
+      const time = Math.floor((Date.now() - init) / 1000)
+      let hour = formatHour(time)
+      setTimeFormated(hour)
+    }, 1000)
   }
 
-
+  const formatHour = (sec) => {
+    const min = Math.floor(sec / 60)
+    const second = sec % 60
+    return `${min}:${second.toString().padStart(2, "0")}`
+  }
 
   const stopRecorder = () => {
+    setTimeFormated(null)
+    clearInterval(timerRef.current)
     if (mediaRecorder.current) {
       mediaRecorder.current.stop()
 
     }
-
-
   }
+
   const sendMessage = async () => {
 
     let response = null
     if (formadataRef.current) {
-      console.log("Entrou na condicao: ", formadataRef.current)
       const formdata = new FormData()
       formdata.append("file", formadataRef.current)
       response = await SendFiles(formdata)
@@ -75,7 +96,6 @@ export const useMessage = () => {
     }
 
 
-    console.log("Aqui está a resposta: ", response)
     clientSocket.current = getClient()
     const target = param.get("user")
     clientSocket.current.publish({
@@ -87,8 +107,7 @@ export const useMessage = () => {
     setClientMessage("")
     setEndRecording(false)
     setIsSelectedFile(false)
-    //    response = null
     audioChunks.current = []
   }
-  return { editMessage, sendMessage, clientMessage, uploadFiles, startRecorder, stopRecorder, voiceEndRecording, audioBlob, isSelectedFile }
+  return { editMessage, sendMessage, clientMessage, uploadFiles, startRecorder, stopRecorder, voiceEndRecording, audioBlob, isSelectedFile, clicked, recording, timeFormated }
 }
