@@ -95,7 +95,7 @@ export const useMessage = () => {
       setAudioBlob(null)
     }
 
-
+    console.log(response)
     clientSocket.current = getClient()
     const target = param.get("user")
     clientSocket.current.publish({
