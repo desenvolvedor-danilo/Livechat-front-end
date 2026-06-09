@@ -4,8 +4,8 @@ const nextConfig = {
     middlewareClientMaxBodySize: 50 * 1024 * 1024,
   },
   async rewrites() {
-    const BACKEND_URL = "http://137.131.163.242:8080"
-    const URL_FILE = "https://livechat-0380.onrender.com"
+    const BACKEND_URL = "https://speakflow.ddns.net"
+    // const URL_FILE = "https://livechat-0380.onrender.com"
     return [
       {
         source: "/users/:path*",
@@ -29,7 +29,7 @@ const nextConfig = {
 
       {
         source: "/files/:path*",
-        destination: URL_FILE + "/files/:path*",
+        destination: BACKEND_URL + "/files/:path*",
       },
     ];
   },
@@ -46,10 +46,10 @@ const nextConfig = {
 
     remotePatterns: [{
       protocol: "https",
-      hostname: "livechat-0380.onrender.com",
+      hostname: "speakflow.ddns.net",
       //port: "8080",
-      pathname: "**",
-      search: ""
+      // pathname: "**",
+      // search: ""
     }
     ]
   }
