@@ -5,7 +5,7 @@ let client = null;
 export function getClient() {
   if (client) return client
 
-  const socket = new SockJS("https://speakflow.ddns.net/buildrun-livechat-websocket");
+  const socket = new SockJS("https://livechat-0380.onrender.com/buildrun-livechat-websocket");
 
   //  const socket = new SockJS("https://speakflow.ddns.net/buildrun-livechat-websocket")
   client = new Client({
