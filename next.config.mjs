@@ -49,7 +49,7 @@ const nextConfig = {
       hostname: "speakflow.ddns.net",
       //port: "8080",
       pathname: "**",
-      // search: ""
+      search: ""
     }
     ]
   }
