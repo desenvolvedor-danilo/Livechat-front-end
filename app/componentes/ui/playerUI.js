@@ -15,7 +15,7 @@ export function Audio({ controls, src, play, pause, update, metadata }) {
 export function ProgressBar({ time, timeCurrent, event, widht }) {
 
   return (
-    <input type="range" min="0" width={widht} max={time ?? 0} value={timeCurrent ?? 0} onChange={event} />
+    <input type="range" min="0" style={{ width: `${widht}px` }} max={time ?? 0} value={timeCurrent ?? 0} onChange={event} />
   )
 }
 export function Pausar({ controls }) {
