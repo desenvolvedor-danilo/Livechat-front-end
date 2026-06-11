@@ -7,6 +7,7 @@ import NavBar from "./navBar.js";
 import { hidedOrShowed } from "@/app/componentes/functions/hidedOrShowed";
 import { useRef } from "react";
 import { ChooseElementType } from "../utils/ChooseElementType";
+import { Player } from "../functions/player";
 
 export default function ChatContent() {
   const { messageServer } = useWebsocket()
@@ -21,6 +22,7 @@ export default function ChatContent() {
           <NavBar />
         </header >
         <div id="chat" ref={scrollRef} onScroll={showUp} className="message-container">
+
           {
             Array.isArray(messages) &&
             messages.map((msg, index) => (
@@ -35,6 +37,7 @@ export default function ChatContent() {
                 ? ChooseElementType(msg.urlFile) : msg.message}<div className={msg.from == localStorage.getItem("email") ? "timestamp-sent" : "timestamp-received"}>{msg.createdAt} </div></div>
             ))
           }
+
         </div >
         <div className="chat-input">
           {

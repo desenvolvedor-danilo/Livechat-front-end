@@ -1,3 +1,4 @@
+import { Player } from "../functions/player"
 import { ExtractExtension } from "./ExtractExtension"
 
 export function ChooseElementType(msg) {
@@ -25,9 +26,10 @@ export function ChooseElementType(msg) {
     }
     if (ExtractExtension(msg) === "webm") {
       return (
-        <audio controls style={{ width: "99%" }}>
-          <source src={msg} type="audio/webm" />
-        </audio>
+        // <audio controls style={{ width: "99%" }}>
+        //   <source src={msg} type="audio/webm" />
+        // </audio>
+        <Player src={msg} />
       )
     }
   }
