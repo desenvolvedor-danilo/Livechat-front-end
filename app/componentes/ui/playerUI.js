@@ -1,13 +1,15 @@
 import { Pause, Play } from "lucide-react";
+import { useState } from "react";
 
 export function Tocar({ controls }) {
   return (
     <button onClick={controls}>{<Play style={{ marginBottom: "-4px" }} color="#ff7799" size={20} />}</button>
   )
 }
-export function Audio({ controls, src }) {
+export function Audio({ controls, src, play, pause }) {
+
   return (
-    <audio src={src} ref={controls} />
+    <audio src={src} ref={controls} onPlay={play} onPause={pause} />
   )
 }
 export function ProgressBar({ time, timeCurrent, event }) {
@@ -17,7 +19,7 @@ export function ProgressBar({ time, timeCurrent, event }) {
 }
 export function Pausar({ controls }) {
   return (
-    <button onClick={controls}>{<Pause style={{ marginBottom: "-4px" }} color="#ff7799" size={20} />}</button>
+    <button onClick={controls}>{<Pause style={{ marginBottom: "-6px" }} color="#ff7799" size={20} />}</button>
   )
 }
 export function Duration({ time }) {
