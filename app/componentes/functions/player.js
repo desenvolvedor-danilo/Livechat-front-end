@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Audio, Duration, Pausar, ProgressBar, Tocar } from "../ui/playerUI";
 
 export function Player({ src }) {
+  console.log("Player rended")
   const audio = useRef(null);
   const formatHour = (second) => {
     const min = second / 60;
@@ -9,11 +10,6 @@ export function Player({ src }) {
     return `${fate[0]}:${fate[1].substring(0, 2)}`
   }
   const [isPlaying, setIsPlaying] = useState(false)
-  if (audio.current?.paused) {
-    setIsPlaying(false)
-  } else {
-    setIsPlaying(true)
-  }
   return (
     <>
       {
@@ -28,7 +24,7 @@ export function Player({ src }) {
         (audio.current && audio.current.duration) &&
         <Duration time={formatHour(audio.current.duration)} />
       }
-      <Audio controls={audio} src={src} />
+      <Audio controls={audio} src={src} play={() => setIsPlaying(true)} pause={() => setIsPlaying(false)} />
 
     </>
   )
