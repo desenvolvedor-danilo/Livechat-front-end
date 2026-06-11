@@ -56,15 +56,7 @@ export const useMessage = () => {
 
       const duration = Date.now() - init
       const fixedBlob = await fixWebmDuration(audio, duration)
-      const audioTest = new Audio(URL.createObjectURL(fixedBlob))
-
-      audioTest.onloadedmetadata = () => {
-
-        console.log("Duration recorded: ", duration)
-        console.log("Duration audio test: ", audioTest.duration)
-      }
-
-      setAudioBlob(audio)
+      setAudioBlob(fixedBlob)
       stream.getTracks().forEach(track => track.stop());
       setClicked(false)
       setRecording(false)
