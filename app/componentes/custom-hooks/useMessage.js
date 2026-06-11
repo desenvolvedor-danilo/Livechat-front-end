@@ -3,6 +3,8 @@ import { useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { getClient } from "../functions/getClient";
 import { SendFiles } from "../functions/SendFiles";
+import { FFmpeg } from "@ffmpeg/ffmpeg";
+import fixWebmDuration from "fix-webm-duration";
 
 export const useMessage = () => {
 
@@ -47,13 +49,18 @@ export const useMessage = () => {
     mediaRecorder.current.ondataavailable = event => {
       audioChunks.current.push(event.data);
     }
-    mediaRecorder.current.onstop = () => {
+    mediaRecorder.current.onstop = async () => {
       const audio = new Blob(audioChunks.current, {
         type: "audio/webm"
       })
-      const url = URL.createObjectURL(audio)
-      const audioTest = new Audio(url)
+
+      const duration = Date.now() - init
+      const fixedBlob = await fixWebmDuration(audio, duration)
+      const audioTest = new Audio(URL.createObjectURL(fixedBlob))
+
       audioTest.onloadedmetadata = () => {
+
+        console.log("Duration recorded: ", duration)
         console.log("Duration audio test: ", audioTest.duration)
       }
 
