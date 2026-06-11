@@ -13,7 +13,8 @@ export function Player({ src }) {
   return (
     <>
       {
-        isPlaying ?
+        (audio.current &&
+          isPlaying) ?
           <Pausar controls={() => audio.current.pause()} />
           :
           <Tocar controls={() => audio.current.play()} />
