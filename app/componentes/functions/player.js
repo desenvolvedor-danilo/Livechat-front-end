@@ -11,6 +11,8 @@ export function Player({ src }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const widht = Math.min(300, Math.max(80, duration * 8))
+
   return (
     <>
 
@@ -28,7 +30,7 @@ export function Player({ src }) {
           :
           <Tocar controls={() => audio.current.play()} />
       }
-      <ProgressBar time={duration} timeCurrent={currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
+      <ProgressBar time={duration} widht={widht} timeCurrent={currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
       {/* { */}
       {/*   (audio.current && audio.current.duration) && */}
       {/*   <Duration time={formatHour(audio.current.duration)} /> */}
