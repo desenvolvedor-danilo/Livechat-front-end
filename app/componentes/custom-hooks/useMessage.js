@@ -51,6 +51,12 @@ export const useMessage = () => {
       const audio = new Blob(audioChunks.current, {
         type: "audio/webm"
       })
+      const url = URL.createObjectURL(audio)
+      const audioTest = new Audio(url)
+      audioTest.onloadedmetadata = () => {
+        console.log("Duration audio test: ", audioTest.duration)
+      }
+
       setAudioBlob(audio)
       stream.getTracks().forEach(track => track.stop());
       setClicked(false)
