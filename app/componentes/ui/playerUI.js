@@ -2,7 +2,7 @@ import { Pause, Play } from "lucide-react";
 
 export function Tocar({ controls }) {
   return (
-    <button onClick={controls}>{<Play color="#ff7799" size={20} />}</button>
+    <button onClick={controls}>{<Play style={{ marginBottom: "-4px" }} color="#ff7799" size={20} />}</button>
   )
 }
 export function Audio({ controls, src }) {
@@ -17,7 +17,12 @@ export function ProgressBar({ time, timeCurrent, event }) {
 }
 export function Pausar({ controls }) {
   return (
-    <button onClick={controls}>{<Pause color="#ff7799" size={20} />}</button>
+    <button onClick={controls}>{<Pause style={{ marginBottom: "-4px" }} color="#ff7799" size={20} />}</button>
+  )
+}
+export function Duration({ time }) {
+  return (
+    <span className="durationAudio">{time}</span>
   )
 
 }

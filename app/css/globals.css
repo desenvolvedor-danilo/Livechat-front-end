@@ -48,7 +48,7 @@ a {
 
 input[type="range"] {
   appearance: none;
-  width: fit-content;
+  width: 110px;
   background: transparent;
 }
 
@@ -59,13 +59,16 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: #ff7799;
   margin-top: -5px;
+  margin-left: -1px;
   cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
+  width: 70%;
+  margin-left: 8px;
   border-radius: 999px;
-  margin-top: -20px;
+  margin-top: -10px;
   background: #ddd;
 }
 

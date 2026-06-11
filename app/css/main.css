@@ -321,3 +321,12 @@ h2 {
     user-select: none;
     -webkit-user-select: none;
 }
+
+.durationAudio {
+    font-size: 1.2em;
+    font-weight: bolder;
+    font-style: italic;
+    display: inline-block;
+    width: fit-content;
+    margin-left: 10px;
+}
