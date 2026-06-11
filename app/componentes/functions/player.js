@@ -33,7 +33,7 @@ export function Player({ src }) {
       <ProgressBar time={duration} timeCurrent={currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
       {
         (audio.current && audio.current.duration) &&
-        <Duration time={formatHour(audio.current.duration)} />
+        <Duration time={formatHour(duration)} />
       }
 
 
