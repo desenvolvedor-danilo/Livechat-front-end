@@ -14,9 +14,9 @@ export function Player({ src }) {
     <>
       {
         isPlaying ?
-          <Tocar controls={() => audio.current.play()} />
-          :
           <Pausar controls={() => audio.current.pause()} />
+          :
+          <Tocar controls={() => audio.current.play()} />
       }
       <ProgressBar time={audio.current && audio.current.duration} timeCurrent={audio.current && audio.current.currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
       {
