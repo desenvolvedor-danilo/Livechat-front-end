@@ -20,7 +20,7 @@ export function Player({ src }) {
           :
           <Tocar controls={() => audio.current.play()} />
       }
-      <ProgressBar time={duration} timeCurrent={currentTime} step={currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
+      <ProgressBar time={duration} timeCurrent={currentTime} step={duration - currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
       {/* { */}
       {/*   (audio.current && audio.current.duration) && */}
       {/*   <Duration time={formatHour(audio.current.duration)} /> */}
