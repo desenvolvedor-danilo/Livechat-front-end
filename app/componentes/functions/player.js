@@ -18,10 +18,10 @@ export function Player({ src }) {
           <Pausar controls={() => audio.current.pause()} />
       }
       <ProgressBar time={audio.current && audio.current.duration} timeCurrent={audio.current && audio.current.currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
-      {
-        (audio.current && audio.current.duration) &&
-        <Duration time={formatHour(audio.current.duration)} />
-      }
+      {/* { */}
+      {/*   (audio.current && audio.current.duration) && */}
+      {/*   <Duration time={formatHour(audio.current.duration)} /> */}
+      {/* } */}
       <Audio controls={audio} src={src} />
 
     </>
