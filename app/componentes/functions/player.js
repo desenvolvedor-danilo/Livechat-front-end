@@ -9,12 +9,16 @@ export function Player({ src }) {
     return `${fate[0]}:${fate[1].substring(0, 2)}`
   }
   const [isPlaying, setIsPlaying] = useState(false)
-
+  if (audio.current?.paused) {
+    setIsPlaying(false)
+  } else {
+    setIsPlaying(true)
+  }
   return (
     <>
       {
-        (audio.current &&
-          isPlaying) ?
+
+        isPlaying ?
           <Pausar controls={() => audio.current.pause()} />
           :
           <Tocar controls={() => audio.current.play()} />
@@ -24,7 +28,7 @@ export function Player({ src }) {
         (audio.current && audio.current.duration) &&
         <Duration time={formatHour(audio.current.duration)} />
       }
-      <Audio controls={audio} src={src} play={() => setIsPlaying(true)} pause={setIsPlaying(false)} />
+      <Audio controls={audio} src={src} />
 
     </>
   )
