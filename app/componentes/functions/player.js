@@ -13,6 +13,14 @@ export function Player({ src }) {
   const [duration, setDuration] = useState(0)
   return (
     <>
+
+      <Audio controls={audio} src={src} play={() => setIsPlaying(true)} pause={() => setIsPlaying(false)} update={() => {
+        console.log(audio.current.currentTime)
+        setCurrentTime(audio.current.currentTime)
+      }} metadata={() => {
+        console.log(audio.current.duration)
+        setDuration(audio.current.duration)
+      }} />
       {
 
         isPlaying ?
@@ -20,12 +28,12 @@ export function Player({ src }) {
           :
           <Tocar controls={() => audio.current.play()} />
       }
-      <ProgressBar time={duration} timeCurrent={currentTime} step={duration - currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
+      <ProgressBar time={duration} timeCurrent={currentTime} event={(e) => { audio.current.currentTime = Number(e.target.value) }} />
       {/* { */}
       {/*   (audio.current && audio.current.duration) && */}
       {/*   <Duration time={formatHour(audio.current.duration)} /> */}
       {/* } */}
-      <Audio controls={audio} src={src} play={() => setIsPlaying(true)} pause={() => setIsPlaying(false)} update={() => setCurrentTime(audio.current.currentTime)} metadata={() => setDuration(audio.current.duration)} />
+
 
     </>
   )
