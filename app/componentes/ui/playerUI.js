@@ -6,10 +6,10 @@ export function Tocar({ controls }) {
     <button onClick={controls}>{<Play style={{ marginBottom: "-4px" }} color="#ff7799" size={20} />}</button>
   )
 }
-export function Audio({ controls, src, play, pause }) {
+export function Audio({ controls, src, play, pause, update }) {
 
   return (
-    <audio src={src} ref={controls} onPlay={play} onPause={pause} />
+    <audio src={src} ref={controls} onPlay={play} onPause={pause} onTimeUpdate={update} />
   )
 }
 export function ProgressBar({ time, timeCurrent, event }) {
