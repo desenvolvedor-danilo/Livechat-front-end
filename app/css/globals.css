@@ -48,7 +48,7 @@ a {
 
 input[type="range"] {
   appearance: none;
-  width: 100%;
+  width: 110px;
   background: transparent;
 }
 

@@ -17,10 +17,10 @@ export function Player({ src }) {
     <>
 
       <Audio controls={audio} src={src} play={() => setIsPlaying(true)} pause={() => setIsPlaying(false)} update={() => {
-        console.log(audio.current.currentTime)
+        console.log("Time current: ", audio.current.currentTime)
         setCurrentTime(audio.current.currentTime)
       }} metadata={() => {
-        console.log(audio.current.duration)
+        console.log("Duration: ", audio.current.duration)
         setDuration(audio.current.duration)
       }} />
       {

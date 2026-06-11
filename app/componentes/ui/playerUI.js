@@ -12,10 +12,10 @@ export function Audio({ controls, src, play, pause, update, metadata }) {
     <audio src={src} ref={controls} onPlay={play} onPause={pause} onTimeUpdate={update} onLoadedMetadata={metadata} />
   )
 }
-export function ProgressBar({ time, timeCurrent, event, widht }) {
+export function ProgressBar({ time, timeCurrent, event }) {
 
   return (
-    <input type="range" min="0" style={{ width: `${widht}px` }} max={time ?? 0} value={timeCurrent ?? 0} onChange={event} />
+    <input type="range" min="0" max={time ?? 0} value={timeCurrent ?? 0} onChange={event} />
   )
 }
 export function Pausar({ controls }) {
