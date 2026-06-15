@@ -15,13 +15,12 @@ export function useLogin() {
   const fetchLogin = () => {
     fetch("/users/login", {
       method: "POST",
-      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(login)
     }).then(res => {
       if (!res.ok) {
 
-        throw new Error("Erro de login verifique o usuario/senha e tente novamente")
+        throw new Error(res.json())
       }
       localStorage.setItem("email", login.email)
       document.cookie = `email = ${localStorage.getItem("email")}`
