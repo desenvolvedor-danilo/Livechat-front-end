@@ -7,9 +7,9 @@ export function getClient() {
   const LOCAL_WS_URL = "http://localhost:8080/buildrun-livechat-websocket?user="
   if (client) return client
 
-  // const socket = new SockJS(PRODUCTION_WS_URL + localStorage.getItem("email"));
+  const socket = new SockJS(PRODUCTION_WS_URL + localStorage.getItem("email"));
 
-  const socket = new SockJS(LOCAL_WS_URL + localStorage.getItem("email"));
+  //const socket = new SockJS(LOCAL_WS_URL + localStorage.getItem("email"));
 
   client = new Client({
     webSocketFactory: () => socket, reconnectDelay: 5000,
