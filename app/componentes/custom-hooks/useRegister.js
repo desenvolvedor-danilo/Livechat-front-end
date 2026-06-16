@@ -26,7 +26,7 @@ export function useRegister() {
       if (!res.ok) {
         throw new Error("Erro ao efetuar cadastro verifique as informações cadastradas")
       }
-      router.push("/login")
+      router.push("/")
     })
       .catch((error) => console.log(error.message))
   }

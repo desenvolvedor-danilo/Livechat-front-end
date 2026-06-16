@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { logout } from "../functions/logout";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function NavBar() {
           <Link href="/notifications">Notificações</Link>
           <Link href="/contacts">Contatos</Link>
           <Link href="/configuration">Configurações</Link>
-          <a href="#" className="text-white">
+          <a onClick={logout} className="text-white">
             Logout
           </a>
         </div>
