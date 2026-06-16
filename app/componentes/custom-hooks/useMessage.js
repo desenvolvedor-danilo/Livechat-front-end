@@ -112,7 +112,7 @@ export const useMessage = () => {
     setClientMessage("")
     setEndRecording(false)
     setIsSelectedFile(false)
-    formadataRef.current = null
+    response = null
     audioChunks.current = []
   }
   return { editMessage, sendMessage, clientMessage, uploadFiles, startRecorder, stopRecorder, voiceEndRecording, audioBlob, isSelectedFile, clicked, recording, timeFormated }
