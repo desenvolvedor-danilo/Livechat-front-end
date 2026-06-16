@@ -92,6 +92,7 @@ export const useMessage = () => {
       const formdata = new FormData()
       formdata.append("file", formadataRef.current)
       response = await SendFiles(formdata)
+      formdata.delete("file")
     }
     if (audioBlob) {
       const audioFormData = new FormData()
@@ -113,6 +114,7 @@ export const useMessage = () => {
     setEndRecording(false)
     setIsSelectedFile(false)
     response = null
+
     audioChunks.current = []
   }
   return { editMessage, sendMessage, clientMessage, uploadFiles, startRecorder, stopRecorder, voiceEndRecording, audioBlob, isSelectedFile, clicked, recording, timeFormated }
