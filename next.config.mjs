@@ -11,7 +11,7 @@ const nextConfig = {
       {
         source: "/users/:path*",
         destination: BACKEND_URL + "/users/:path*",
-        //  destination: LOCAL_URL + "/users/:path*",
+        //destination: LOCAL_URL + "/users/:path*",
 
       },
 
@@ -34,14 +34,14 @@ const nextConfig = {
         source: "/private-messages/:path*",
         destination: BACKEND_URL + "/private-messages/:path*",
 
-        // destination: LOCAL_URL + "/private-messages/:path*",
+        //destination: LOCAL_URL + "/private-messages/:path*",
       },
 
       {
         source: "/files/:path*",
         destination: BACKEND_URL + "/files/:path*",
 
-        //  destination: LOCAL_URL + "/files/:path*",
+        //destination: LOCAL_URL + "/files/:path*",
       },
     ];
   },

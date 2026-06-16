@@ -3,9 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { logout } from "../functions/logout";
+import { useRouter } from "next/navigation";
 
 export default function NavBar() {
+  const router = useRouter()
+
+
+  function logout() {
+    fetch("/users/logout", {
+      method: "POST"
+    }).then((res) => {
+      if (res.ok) {
+        router.push("/")
+      }
+    })
+  }
   const [open, setOpen] = useState(false);
 
   return (
@@ -46,7 +58,7 @@ export default function NavBar() {
         <Link className="hover:scale-120" href="/notifications">Notificações</Link>
         <Link className="hover:scale-120" href="/contacts">Contatos</Link>
         <Link className="hover:scale-120" href="/configuration">Configurações</Link>
-        <a className="hover:scale-120" href="#">Logout</a>
+        <a className="hover:scale-120" onClick={logout}>Logout</a>
       </div>
     </nav>
   );
