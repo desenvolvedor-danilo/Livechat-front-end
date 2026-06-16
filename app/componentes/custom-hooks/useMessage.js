@@ -92,7 +92,7 @@ export const useMessage = () => {
       const formdata = new FormData()
       formdata.append("file", formadataRef.current)
       response = await SendFiles(formdata)
-      formdata.delete("file")
+      formadataRef.current = null
     }
     if (audioBlob) {
       const audioFormData = new FormData()
@@ -112,6 +112,7 @@ export const useMessage = () => {
     })
     setClientMessage("")
     setEndRecording(false)
+    formadataRef.current = null
     setIsSelectedFile(false)
     response = null
 
