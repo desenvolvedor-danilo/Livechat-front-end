@@ -15,6 +15,7 @@
     "@stomp/stompjs": "^7.3.0",
     "@tailwindcss/postcss": "^4.3.0",
     "bootstrap": "^5.3.8",
+    "firebase": "^12.15.0",
     "fix-webm-duration": "^1.0.6",
     "lucide-react": "^1.16.0",
     "next": "16.2.2",

@@ -8,6 +8,7 @@ import { hidedOrShowed } from "@/app/componentes/functions/hidedOrShowed";
 import { useRef } from "react";
 import { ChooseElementType } from "../utils/ChooseElementType";
 import { Player } from "../functions/player";
+import { GetToken, requestPermissionNotification } from "../functions/getToken";
 
 export default function ChatContent() {
   const { messageServer } = useWebsocket()
@@ -15,6 +16,13 @@ export default function ChatContent() {
   const open = useRef()
   const { messages } = useLoadMessages()
   const { buttonRef, show, showUp, isAtBottom, scrolling, scrollRef } = hidedOrShowed()
+  const { requestPermissionNotification } = GetToken()
+  // const requestPermission = async () => {
+  //   const permission = await Notification.requestPermission()
+  //   if (permission === "granted") {
+  //     alert("Notificação permitida")
+  //   }
+  // }
   return (
     <main>
       <div className="chat-container">
@@ -47,8 +55,11 @@ export default function ChatContent() {
             </div> {timeFormated}</span>
               :
               <>
-                <textarea id="msgPrivate" placeholder="Digite sua mensagem..." name="message" value={clientMessage} onChange={editMessage} ></textarea>
-                <h1 role="button" className="custom-absolute" id="hiddenInput" onClick={() => open.current.click()}>+</h1>
+                <textarea id="msgPrivate" placeholder="Digite sua mensagem..." name="message" value={clientMessage} onChange={editMessage} onClick={requestPermissionNotification
+                } ></textarea>
+                <h1 role="button" className="custom-absolute" id="hiddenInput" onClick={() =>
+                  open.current.click()
+                }>+</h1>
                 <input ref={open} type="file" id="sendFiles" onChange={uploadFiles} />
               </>
           }
