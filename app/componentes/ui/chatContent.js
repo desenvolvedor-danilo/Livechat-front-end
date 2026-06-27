@@ -9,6 +9,8 @@ import { useRef } from "react";
 import { ChooseElementType } from "../utils/ChooseElementType";
 import { Player } from "../functions/player";
 import { GetToken, requestPermissionNotification } from "../functions/getToken";
+import { getMessaging, getToken } from "firebase/messaging";
+import { initializeApp } from "firebase/app";
 
 export default function ChatContent() {
   const { messageServer } = useWebsocket()
@@ -16,13 +18,8 @@ export default function ChatContent() {
   const open = useRef()
   const { messages } = useLoadMessages()
   const { buttonRef, show, showUp, isAtBottom, scrolling, scrollRef } = hidedOrShowed()
-  const { requestPermissionNotification } = GetToken()
-  // const requestPermission = async () => {
-  //   const permission = await Notification.requestPermission()
-  //   if (permission === "granted") {
-  //     alert("Notificação permitida")
-  //   }
-  // }
+
+
   return (
     <main>
       <div className="chat-container">
@@ -55,8 +52,8 @@ export default function ChatContent() {
             </div> {timeFormated}</span>
               :
               <>
-                <textarea id="msgPrivate" placeholder="Digite sua mensagem..." name="message" value={clientMessage} onChange={editMessage} onClick={requestPermissionNotification
-                } ></textarea>
+                <textarea id="msgPrivate" placeholder="Digite sua mensagem..." name="message" value={clientMessage} onChange={editMessage}
+                ></textarea>
                 <h1 role="button" className="custom-absolute" id="hiddenInput" onClick={() =>
                   open.current.click()
                 }>+</h1>
@@ -84,6 +81,6 @@ export default function ChatContent() {
       <div className="fixed-bottom mb-5 ms-3 d-flex justify-content-end" style={{ pointerEvents: "none" }}>
         <button ref={buttonRef} style={{ backgroundColor: "transparent", pointerEvents: "auto", display: isAtBottom || show ? "none" : "block" }} onClick={scrolling} type="button" className="mb-5 btn btn-info w-25 fw-light rounded-circle fw-bolder fs-1"><div className="rounded-circle border-white" style={{ width: "40px", height: "38px", backgroundColor: "#E5E5EA" }}>↓</div></button>
       </div>
-    </main>
+    </main >
   )
 }

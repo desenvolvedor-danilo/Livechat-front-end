@@ -11,14 +11,14 @@ const nextConfig = {
       {
         source: "/users/:path*",
         destination: BACKEND_URL + "/users/:path*",
-        // destination: LOCAL_URL + "/users/:path*",
+        //destination: LOCAL_URL + "/users/:path*",
 
       },
 
       {
         source: "/refresh/:path*",
         destination: BACKEND_URL + "/refresh/:path*",
-        // destination: LOCAL_URL + "/refresh/:path*",
+        //destination: LOCAL_URL + "/refresh/:path*",
 
       },
 

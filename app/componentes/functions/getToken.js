@@ -4,12 +4,12 @@ import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyBcRyd7KPNzebG-KDkqOgW2XHub6OTndWo",
-  authDomain: "livechat-ce9c4.firebaseapp.com",
-  projectId: "livechat-ce9c4",
-  storageBucket: "livechat-ce9c4.firebasestorage.app",
-  messagingSenderId: "646790522951",
-  appId: "1:646790522951:web:da157fffedde43d759e962"
+  apikey: "aizasybcryd7kpnzebg-kdkqogw2xhub6otndwo",
+  authdomain: "livechat-ce9c4.firebaseapp.com",
+  projectid: "livechat-ce9c4",
+  storagebucket: "livechat-ce9c4.firebasestorage.app",
+  messagingsenderid: "646790522951",
+  appid: "1:646790522951:web:da157fffedde43d759e962"
 }
 export function GetToken() {
   const app = initializeApp(firebaseConfig)

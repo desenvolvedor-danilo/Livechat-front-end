@@ -2,9 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useNotifications } from "../componentes/custom-hooks/useNotifications";
 import NavBar from "../componentes/ui/navBar";
+import RequestNotifications from "../componentes/ui/requestNotification";
 export default function Notifications() {
   const lastByUser = {}
   const [names, setNames] = useState({})
+  const [show, setShow] = useState(false)
+  const [count, setCount] = useState(0)
   let participante = []
   const { notifications, user } = useNotifications()
 
@@ -14,6 +17,17 @@ export default function Notifications() {
       lastByUser[notification.id] = notification
     })
   }
+  useEffect(() => {
+
+    if (typeof window !== "undefined" && Notification.permission === "default") {
+      setShow(true)
+
+    } else {
+      setShow(false)
+
+    }
+  }, [])
+
   useEffect(() => {
     if (!Array.isArray(notifications)) return
     notifications.forEach(async (notification) => {
@@ -38,6 +52,11 @@ export default function Notifications() {
           <NavBar />
         </header>
         <div id="notifications" className="contact-list">
+          {
+
+            show &&
+            <RequestNotifications />
+          }
           {
             Object.values(lastByUser).map((msg, index) => (
 
