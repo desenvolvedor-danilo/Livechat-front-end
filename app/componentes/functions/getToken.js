@@ -29,9 +29,11 @@ export function GetToken() {
         vapidKey: "BA00hc2JI1NUNqmWsqctZp1H3n8lp2I9_4UqDna77-2E9iCWBqmBfhbqLf9YI7bDnvzaItCx69FDm9jfndJ3hxI"
       })
       fetch("/users/save-token", {
+
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ token: token })
+        body: JSON.stringify({ email: localStorage.getItem("email"), token: token })
       })
     }
   }
