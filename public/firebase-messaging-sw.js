@@ -1,4 +1,3 @@
-import firebase from "firebase/compat/app";
 
 importScripts("https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js");
@@ -14,43 +13,11 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-// Quando chegar push em segundo plano
-// messaging.onBackgroundMessage(payload => {
-// 	console.log("[SW] Push recebido:", payload);
-// 	// console.log("link:", payload.data)
-// 	const notificationTitle = payload.notification.title;
-// 	const notificationOptions = {
-// 		body: payload.notification.body,
-// 		icon: "/chat-icon.png",
-// 		image: payload.notification.body,
-// 		webpush: {
-// 			link: payload.fcm_options.link
-// 		}
-// 	}
-// 	self.registration.showNotification(notificationTitle, notificationOptions);
-// });
-// self.addEventListener("notificationclick", event => {
-//
-// 	console.log("CLICK RECEBIDO");
-//
-// 	event.notification.close();
-//
-// 	const link = event.notification.fcm_options.link;
-//
-// 	console.log("LINK:", link);
-//
-// 	event.waitUntil(
-// 		self.clients.openWindow("http://localhost:3000")
-// 	);
-//
-// });
-//
 messaging.onBackgroundMessage((payload) => {
 	console.log("[SW] Push recebido:", payload);
 
 	const link =
 		payload.fcmOptions?.link ||
-		payload.fcm_options?.link ||
 		"https://speakflowchat.vercel.app";
 	console.log("[SW] LINK EXTRAÍDO:", link);
 	self.registration.showNotification(payload.notification.title, {

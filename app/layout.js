@@ -5,6 +5,8 @@ import "./css/notification.css"
 import "./css/globals.css";
 import "./css/list-contacts.css"
 import FirebaseServiceWorker from "./componentes/ui/workerRegistration";
+import { Suspense } from "react";
+import { NotificationRouteHandler } from "./componentes/NotificationHandler";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,6 +29,9 @@ export default function RootLayout({ children }) {
 
       <body>
         {/* <BootstrapJs /> */}
+        <Suspense fallback={null}>
+          <NotificationRouteHandler />
+        </Suspense>
         <FirebaseServiceWorker />
         {children}
       </body>
