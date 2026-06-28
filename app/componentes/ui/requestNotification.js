@@ -16,6 +16,7 @@ export default function RequestNotifications() {
 
   const app = initializeApp(firebaseConfig)
   const requestPermission = async () => {
+    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js")
     if (typeof window === "undefined") {
       return null
     }
@@ -30,7 +31,8 @@ export default function RequestNotifications() {
       const messaging = getMessaging(app)
 
       const token = await getToken(messaging, {
-        vapidKey: "BA00hc2JI1NUNqmWsqctZp1H3n8lp2I9_4UqDna77-2E9iCWBqmBfhbqLf9YI7bDnvzaItCx69FDm9jfndJ3hxI"
+        vapidKey: "BA00hc2JI1NUNqmWsqctZp1H3n8lp2I9_4UqDna77-2E9iCWBqmBfhbqLf9YI7bDnvzaItCx69FDm9jfndJ3hxI",
+        serviceWorkerRegistration: registration
       })
       fetch("/users/save-token", {
 
