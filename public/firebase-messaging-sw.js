@@ -44,3 +44,39 @@ const messaging = firebase.messaging();
 //
 // });
 //
+messaging.onBackgroundMessage((payload) => {
+	console.log("[SW] Push recebido:", payload);
+
+	const link =
+		payload.fcm_options?.link ||
+		"https://speakflowchat.vercel.app";
+
+	self.registration.showNotification(payload.notification.title, {
+		body: payload.notification.body,
+		icon: "/chat-icon.png",
+		data: {
+			link: link,
+		},
+	});
+});
+
+self.addEventListener("notificationclick", (event) => {
+	event.notification.close();
+
+	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+
+	event.waitUntil(
+		clients.matchAll({
+			type: "window",
+			includeUncontrolled: true,
+		}).then((clientList) => {
+			for (const client of clientList) {
+				return client.focus().then(() => {
+					return client.navigate(link);
+				});
+			}
+
+			return clients.openWindow(link);
+		})
+	);
+});
