@@ -12,7 +12,7 @@ export function NotificationRouteHandler() {
 
     if (!user) return;
 
-    router.replace(`/chat?user=${encodeURIComponent(user)}`);
+    router.push(`/chat?user=${encodeURIComponent(user)}`);
   }, [searchParams, router]);
 
   return null;
