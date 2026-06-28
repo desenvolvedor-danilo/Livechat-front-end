@@ -8,8 +8,10 @@ export const useLoadMessages = () => {
   const [messages, setMessages] = useState([])
   const [reload, setReload] = useState(0)
   const param = useSearchParams()
+
+  const to = param.get("user")
   useEffect(() => {
-    const to = param.get("user")
+    if (!to) return
     fetch(`/private-messages/find?to=${to}&from=${localStorage.getItem("email")}`, {
       credentials: "include"
     }).then(res => {
@@ -25,6 +27,6 @@ export const useLoadMessages = () => {
       })
 
 
-  }, [reload])
+  }, [to, reload])
   return { messages }
 } 
