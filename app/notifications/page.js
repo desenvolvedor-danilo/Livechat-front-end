@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNotifications } from "../componentes/custom-hooks/useNotifications";
 import NavBar from "../componentes/ui/navBar";
 import RequestNotifications from "../componentes/ui/requestNotification";
@@ -7,7 +7,6 @@ export default function Notifications() {
   const lastByUser = {}
   const [names, setNames] = useState({})
   const [show, setShow] = useState(false)
-  const [count, setCount] = useState(0)
   let participante = []
   const { notifications, user } = useNotifications()
 
