@@ -25,6 +25,6 @@ export const useLoadMessages = () => {
       })
 
 
-  }, [to, reload])
+  }, [reload])
   return { messages }
 } 
