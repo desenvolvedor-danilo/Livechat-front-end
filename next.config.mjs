@@ -18,7 +18,7 @@ const nextConfig = {
       {
         source: "/refresh/:path*",
         destination: BACKEND_URL + "/refresh/:path*",
-        //destination: LOCAL_URL + "/refresh/:path*",
+        // destination: LOCAL_URL + "/refresh/:path*",
 
       },
 
