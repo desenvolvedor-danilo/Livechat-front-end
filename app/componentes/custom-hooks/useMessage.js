@@ -110,8 +110,6 @@ export const useMessage = () => {
         to: target !== localStorage.getItem("email") && target, from: localStorage.getItem("email"), message: response ? null : clientMessage, urlFile: response?.url || null
       })
     })
-    // stopRecorder()
-
     setClientMessage("")
     setEndRecording(false)
     formadataRef.current = null
