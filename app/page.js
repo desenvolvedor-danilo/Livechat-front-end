@@ -6,7 +6,7 @@ import { useVisibility } from "./componentes/custom-hooks/useVisibility";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 export default function Home() {
-  const { login, handleState, fetchLogin } = useLogin()
+  const { login, handleState, fetchLogin, enter } = useLogin()
   const { visibility, handleVisibility } = useVisibility()
   return (
     <div>
@@ -19,7 +19,7 @@ export default function Home() {
           <div className="form-group relative w-full">
 
 
-            <input type={visibility ? "text" : "password"} id="senha" placeholder="Digite sua senha" className="w-full rounded-lg border border-gray-300 px-3 py-2 pr-10" name="password" value={login.password} onChange={handleState} />
+            <input type={visibility ? "text" : "password"} id="senha" placeholder="Digite sua senha" className="w-full rounded-lg border border-gray-300 px-3 py-2 pr-10" name="password" onKeyDown={enter} value={login.password} onChange={handleState} />
 
             <button className="absolute top-1/2 -translate-y-1/2 right-3" onClick={handleVisibility}>{visibility ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />
             }</button>

@@ -31,5 +31,10 @@ export function useLogin() {
       .catch(err => console.log(err.message))
 
   }
-  return { login, handleState, fetchLogin }
+  const enter = (event) => {
+    if (event.key === "Enter") {
+      fetchLogin()
+    }
+  }
+  return { login, handleState, fetchLogin, enter }
 }
