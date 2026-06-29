@@ -17,6 +17,7 @@ export function useNotifications() {
         return res.json()
       }
     }).then(async (data) => {
+      console.log(data)
       const dado = data.map((msg) => msg.participantes.filter(p => p !== localStorage.getItem("email"))).flat()
       setNotifications(data)
 

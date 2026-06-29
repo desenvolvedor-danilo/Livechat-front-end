@@ -10,7 +10,7 @@ export default function contacts() {
   console.log(users)
   return (
     <>
-      <div className="contacts-container" id="contacts">
+      <div className="container mx-auto px-4" id="contacts">
         <header className="chat-header">
           <NavBar />
         </header>

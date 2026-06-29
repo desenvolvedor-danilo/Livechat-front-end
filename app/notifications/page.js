@@ -46,7 +46,7 @@ export default function Notifications() {
 
   return (
     <>
-      <div className="contacts-container" id="contacts">
+      <div className="container mx-auto px-1 mt-[1px]" id="contacts">
         <header className="chat-header">
           <NavBar />
         </header>

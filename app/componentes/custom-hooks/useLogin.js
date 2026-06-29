@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function useLogin() {
+  const [error, setError] = useState("")
   const router = useRouter();
   const [login, setLogin] = useState({
     email: "",
@@ -20,6 +21,7 @@ export function useLogin() {
     }).then(res => {
       if (!res.ok) {
 
+        setError("Email ou senha incorretos")
         throw new Error(res.json())
       }
       localStorage.setItem("email", login.email)
@@ -36,5 +38,5 @@ export function useLogin() {
       fetchLogin()
     }
   }
-  return { login, handleState, fetchLogin, enter }
+  return { login, handleState, fetchLogin, enter, error }
 }
