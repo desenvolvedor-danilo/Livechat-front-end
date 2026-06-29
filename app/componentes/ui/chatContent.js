@@ -65,15 +65,23 @@ export default function ChatContent() {
 
               <button id="sendPrivate" onClick={sendMessage}>➤</button>
               :
+              !recording ?
+                <button id="gravacao" className={`flex justify-center items-center h-64 w-full ${clicked ? "scale-130" : "scale-100"}`}
+                  onClick={startRecorder}
+                >
 
-              <button id="gravacao" className={`flex justify-center items-center h-64 w-full ${clicked ? "scale-130" : "scale-100"}`}
-                onPointerDown={startRecorder} onPointerUp={stopRecorder}
-                onPointerLeave={stopRecorder}
-              >
+                  <img id="botao-microfone" className="max-h-full max-w-full  object-contain" src="/voice.png"
+                    onContextMenu={(e) => e.preventDefault()} />
+                </button>
+                :
 
-                <img id="botao-microfone" className="max-h-full max-w-full  object-contain" src="/voice.png"
-                  onContextMenu={(e) => e.preventDefault()} />
-              </button>
+                <button id="gravacao" className={`flex justify-center items-center h-64 w-full ${clicked ? "scale-130" : "scale-100"}`}
+                  onClick={stopRecorder}
+                >
+
+                  <img id="botao-microfone" className="max-h-full max-w-full  object-contain" src="/stop1.png"
+                    onContextMenu={(e) => e.preventDefault()} />
+                </button>
 
           }
         </div>
