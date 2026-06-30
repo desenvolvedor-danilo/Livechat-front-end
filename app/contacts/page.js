@@ -21,7 +21,7 @@ export default function contacts() {
               user.email !== localStorage.getItem("email") &&
 
               <a key={index} href={`chat?user=${user.email}`} className="contact-item online-contact">
-                <Image style={{ objectFit: "cover" }} className="contact-avatar" src={user.url !== null ? user.url : "http://localhost:8080/icons/avatar.png"} alt="picture profile" height={100} width={100} />
+                <Image style={{ objectFit: "cover" }} className="contact-avatar" src={user?.url || "/favicon.png"} alt="picture profile" height={100} width={100} />
                 <div className="contact-info">
                   <span className="contact-name">{user.nome}</span>
                 </div>
