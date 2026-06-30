@@ -24,7 +24,11 @@ export const loadingContacts = () => {
       } else {
         return resp.json()
       }
-    }).then((data) => setUsers(data))
+    }).then((data) => {
+      console.log(data)
+      setUsers(data)
+
+    })
       .catch(() => {
 
       })
