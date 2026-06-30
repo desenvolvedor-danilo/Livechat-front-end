@@ -31,8 +31,8 @@ export function useNotifications() {
         )
       )
       const usersMap = {}
-      response.forEach(user => {
-        usersMap[user.nome] = user;
+      response.forEach((user, index) => {
+        usersMap[dado[index]] = user;
       })
       setUser(usersMap)
     })
