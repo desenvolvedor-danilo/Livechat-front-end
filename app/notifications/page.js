@@ -62,7 +62,7 @@ export default function Notifications() {
               <a key={index} href={"/chat?user=" + msg.participantes.filter(part => part !== localStorage.getItem("email"))}
                 className="contact-item online-contact">
 
-                <img className="contact-avatar" src={user[msg.name]?.url || "/favicon.png"} width="50" height="50" style={{ objectFit: "cover" }} />
+                <img className="contact-avatar" src={user[msg.recipient]?.url || "/favicon.png"} width="50" height="50" style={{ objectFit: "cover" }} />
                 <div className="contact-info">
                   <div className="">{names[msg.participantes.find(part => part !== localStorage.getItem("email"))]}</div>
                   <span className="contact-name">{msg.message}</span>

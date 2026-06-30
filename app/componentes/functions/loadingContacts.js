@@ -11,7 +11,11 @@ export const loadingContacts = () => {
   useEffect(() => {
     fetch("/users/findall", {
       method: "GET",
-      credentials: "include"
+      credentials: "include",
+      cache: "no-store",
+      headers: {
+        "cache-control": "no-cache"
+      }
     }).then((resp) => {
       if (!resp.ok) {
         RefreshToken();
