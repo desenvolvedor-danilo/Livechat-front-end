@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
 
       <body>
         {/* <BootstrapJs /> */}
-        <Suspense fallback={null}>
-          <NotificationRouteHandler />
-        </Suspense>
+        {/* <Suspense fallback={null}> */}
+        {/*   <NotificationRouteHandler /> */}
+        {/* </Suspense> */}
         <FirebaseServiceWorker />
         {children}
       </body>

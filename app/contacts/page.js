@@ -10,7 +10,7 @@ export default function contacts() {
   console.log(users)
   return (
     <>
-      <div className="container mx-auto px-4" id="contacts">
+      <div className="flex-col justify-center gap-2" id="contacts">
         <header className="chat-header">
           <NavBar />
         </header>
@@ -20,8 +20,9 @@ export default function contacts() {
             users.map((user, index) => (
               user.email !== localStorage.getItem("email") &&
 
-              <a key={index} href={`chat?user=${user.email}`} className="contact-item online-contact">
-                <Image style={{ objectFit: "cover" }} className="contact-avatar" src={user?.url || "/favicon.png"} alt="picture profile" height={100} width={100} />
+              <a key={index} href={`chat?user=${user.email}`} className=" flex flex-row w-full justify-start gap-4 contact-item online-contact break-words">
+
+                <Image className="self-start w-14 h-14 rounded-full Object-cover Object-center shrink-0" width={100} height={100} src={user?.url || "/favicon.png"} alt="picture profile" />
                 <div className="contact-info">
                   <span className="contact-name">{user.nome}</span>
                 </div>

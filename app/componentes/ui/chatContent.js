@@ -23,10 +23,11 @@ export default function ChatContent() {
   return (
     <main>
       <div className="chat-container">
+
         <header className="chat-header">
           <NavBar />
         </header >
-        <div id="chat" ref={scrollRef} onScroll={showUp} className="message-container">
+        <div id="chat" ref={scrollRef} onScroll={showUp} className=" flex flex-col break-words message-container">
 
           {
             Array.isArray(messages) &&
@@ -44,7 +45,7 @@ export default function ChatContent() {
           }
 
         </div >
-        <div className="chat-input">
+        <div className="flex flex-row justify-center items-center chat-input">
           {
             recording ? <span className="p-2 rounded-4"><div className="recording w-5">
               <span className="dot"></span>
@@ -52,12 +53,19 @@ export default function ChatContent() {
             </div> {timeFormated}</span>
               :
               <>
+
                 <textarea id="msgPrivate" placeholder="Digite sua mensagem..." name="message" value={clientMessage} onChange={editMessage}
                 ></textarea>
-                <h1 role="button" className="custom-absolute" id="hiddenInput" onClick={() =>
-                  open.current.click()
-                }>+</h1>
+                <div className="relative w-1 h-1 rounded-lg p-0">
+                  <div role="button" className="absolute 
+                bottom-[-20px] right-58 
+                md:top-1 md:left-2 md:bottom-auto md:right-auto 
+                bg-[#4b4ee8] text-white px-2 py-0 rounded-full" id="hiddenInput" onClick={() =>
+                      open.current.click()
+                    }>+</div>
+                </div>
                 <input ref={open} type="file" id="sendFiles" onChange={uploadFiles} />
+
               </>
           }
           {
@@ -70,25 +78,25 @@ export default function ChatContent() {
                   onClick={startRecorder}
                 >
 
-                  <img id="botao-microfone" className="max-h-full max-w-full  object-contain" src="/voice.png"
+                  <img id="botao-microfone" className="max-h-full max-w-full object-contain" src="/voice.png"
                     onContextMenu={(e) => e.preventDefault()} />
                 </button>
                 :
 
-                <button id="gravacao" className={`flex justify-center items-center h-64 w-full ${clicked ? "scale-130" : "scale-100"}`}
+                <button id="gravacao" className={`h-64 ${clicked ? "scale-130" : "scale-100"}`}
                   onClick={stopRecorder}
                 >
 
-                  <img id="botao-microfone" className="max-h-full max-w-full  object-contain" src="/stop1.png"
+                  <img id="botao-microfone" className="object-contain max-w-full max-h-full mx-auto rounded-full object-center" src="/stop-button.svg"
                     onContextMenu={(e) => e.preventDefault()} />
                 </button>
 
           }
         </div>
       </div >
-      <div className="fixed-bottom mb-5 ms-3 d-flex justify-content-end" style={{ pointerEvents: "none" }}>
-        <button ref={buttonRef} style={{ backgroundColor: "transparent", pointerEvents: "auto", display: isAtBottom || show ? "none" : "block" }} onClick={scrolling} type="button" className="mb-5 btn btn-info w-25 fw-light rounded-circle fw-bolder fs-1"><div className="rounded-circle border-white" style={{ width: "40px", height: "38px", backgroundColor: "#E5E5EA" }}>↓</div></button>
-      </div>
+      {/* <div className="fixed-bottom mb-5 ms-3 d-flex justify-content-end" style={{ pointerEvents: "none" }}> */}
+      {/* <button ref={buttonRef} style={{ backgroundColor: "transparent", pointerEvents: "auto", display: isAtBottom || show ? "none" : "block" }} onClick={scrolling} type="button" className="mb-5 btn btn-info w-25 fw-light rounded-circle fw-bolder fs-1"><div className="rounded-circle border-white" style={{ width: "40px", height: "38px", backgroundColor: "#E5E5EA" }}>↓</div></button> */}
+      {/* </div> */}
     </main >
   )
 }

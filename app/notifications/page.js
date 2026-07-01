@@ -46,11 +46,11 @@ export default function Notifications() {
 
   return (
     <>
-      <div className="flex-col justify-center gap-2" id="contacts">
+      <div className="flex-col break-all justify-center gap-2" id="contacts">
         <header className="chat-header">
           <NavBar />
         </header>
-        <div id="notifications" className="contact-list">
+        <div id="notifications" className="break-words contact-list">
           {
 
             show &&
@@ -60,12 +60,12 @@ export default function Notifications() {
             Object.values(lastByUser).map((msg, index) => (
 
               <a key={index} href={"/chat?user=" + msg.participantes.filter(part => part !== localStorage.getItem("email"))}
-                className="flex flex-row w-full justify-start gap-2 contact-item online-contact">
+                className="flex flex-row break-words justify-start gap-2 contact-item online-contact">
 
                 <img className="self-start w-14 h-14 rounded-full Object-cover Object-center shrink-0" src={user[msg.participantes.find(part => part !== localStorage.getItem("email"))]?.url || "/favicon.png"} />
                 <div className="contact-info">
                   <div className="">{names[msg.participantes.find(part => part !== localStorage.getItem("email"))]}</div>
-                  <span className="flex-1 grow break-words contact-name">{msg.message}</span>
+                  <span className=" contact-name">{msg.message}</span>
                   <span className="self-end">{msg.updatedAt}</span>
                 </div>
               </a>

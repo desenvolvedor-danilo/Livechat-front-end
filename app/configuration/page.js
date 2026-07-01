@@ -12,14 +12,14 @@ export default function Configuration() {
   return (
     <>
 
-      <div className="container mx-auto px-1">
+      <div className="flex flex-col justify-center gap-2">
         <header className="chat-header">
           <NavBar />
         </header>
-        <div id="profile" className="container mx-auto px-1 text-center">
-          <a href="#" className="text-[1.6em]  text-decoration-none fw-bolder fs-2 mt-2 align-self-center" style={{ color: "#4a4ee0" }}>Perfil</a>
+        <div id="profile" className="flex flex-col justify-center gap-2">
+          <a href="#" className="text-decoration-none self-center text-[1.6em]" style={{ color: "#4a4ee0" }}>Perfil</a>
           <input type="file" className="hidden" ref={uploadProfileRef} onChange={(e) => upload(e)} accept="image/*" id="inputPreview" />
-          <img onClick={() => uploadProfileRef.current.click()} src={url ? url : photoProfile && photoProfile.url} className="mx-auto rounded-[100%]" id="imagePreview" width="150" height="150" alt="photoProfile" />
+          <img onClick={() => uploadProfileRef.current.click()} src={url ? url : photoProfile && photoProfile.url} className="self-center w-40 h-40 rounded-full Object-cover Object-center shrink-0" id="imagePreview" width="150" height="150" alt="photoProfile" />
           {/* <input type="file" ref={uploadProfileRef} className="hidden" onChange={(e) => upload(e)} /> */}
           {
             isSelected &&
