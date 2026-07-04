@@ -33,5 +33,5 @@ export function useWebsocket() {
   const editLastSender = (msg) => {
     setLastSender(msg.from);
   }
-  return { lastSender, messageServer }
+  return { lastSender, messageServer, setMessageServer }
 }

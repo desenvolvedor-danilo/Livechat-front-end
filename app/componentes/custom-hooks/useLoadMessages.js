@@ -3,13 +3,16 @@
 import { RefreshToken } from "@/app/componentes/functions/refreshToken"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+//import { useWebsocket } from "./useWebsocket"
 
 export const useLoadMessages = () => {
+  //  const { messageServer, setMessageServer } = useWebsocket()
   const [messages, setMessages] = useState([])
   const [reload, setReload] = useState(0)
   const param = useSearchParams()
 
   const to = param.get("user")
+
   useEffect(() => {
     if (!to) return
     fetch(`/private-messages/find?to=${to}&from=${localStorage.getItem("email")}`, {
@@ -28,5 +31,5 @@ export const useLoadMessages = () => {
 
 
   }, [to, reload])
-  return { messages }
+  return { messages, setMessages }
 } 

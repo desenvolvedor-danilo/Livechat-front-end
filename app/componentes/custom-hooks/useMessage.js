@@ -3,7 +3,6 @@ import { useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { getClient } from "../functions/getClient";
 import { SendFiles } from "../functions/SendFiles";
-import { FFmpeg } from "@ffmpeg/ffmpeg";
 import fixWebmDuration from "fix-webm-duration";
 
 export const useMessage = () => {

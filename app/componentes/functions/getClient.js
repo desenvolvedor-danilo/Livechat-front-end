@@ -9,7 +9,7 @@ export function getClient() {
 
   const socket = new SockJS(PRODUCTION_WS_URL + localStorage.getItem("email"));
 
-  //const socket = new SockJS(LOCAL_WS_URL + localStorage.getItem("email"));
+  // const socket = new SockJS(LOCAL_WS_URL + localStorage.getItem("email"));
 
   client = new Client({
     webSocketFactory: () => socket, reconnectDelay: 5000,
