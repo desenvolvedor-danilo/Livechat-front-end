@@ -2,8 +2,7 @@ import { Player } from "../functions/player"
 import { ExtractExtension } from "./ExtractExtension"
 
 export function ChooseElementType(msg) {
-
-  console.log(ExtractExtension((msg)))
+  if (!msg) return null
   if (msg) {
     if (ExtractExtension(msg) === "jpg" || ExtractExtension(msg) === "png") {
       return (
@@ -26,8 +25,8 @@ export function ChooseElementType(msg) {
     }
     if (ExtractExtension(msg) === "webm") {
       return (
-        // <audio controls style={{ width: "99%" }}>
-        //   <source src={msg} type="audio/webm" />
+        //  <audio controls style={{ width: "99%" }}>
+        // <source src={msg} type="audio/webm" />
         // </audio>
         <Player src={msg} />
       )

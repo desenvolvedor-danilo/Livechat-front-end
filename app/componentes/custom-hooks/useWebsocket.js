@@ -7,6 +7,7 @@ export function useWebsocket() {
   const clientSocket = useRef(null)
   const [messageServer, setMessageServer] = useState([])
   const [lastSender, setLastSender] = useState("")
+  const [messageDeleted, setMessageDeleted] = useState(null)
   useEffect(() => {
     let subscription = null
     let isConnect = false
@@ -14,11 +15,18 @@ export function useWebsocket() {
     clientSocket.current.onConnect = () => {
       console.log("conectado")
       subscription = clientSocket.current.subscribe("/user/queue/message", (message) => {
-        setMessageServer((prev) => [...prev, { ...JSON.parse(message.body) }])
+        if (JSON.parse(message.body).type === "MESSAGE_DELETE") {
+          setMessageDeleted(JSON.parse(message.body).id)
 
-        editLastSender(JSON.parse(message.body))
-        // 
+          setMessageServer(prev => prev.filter(msg => msg.id !== JSON.parse(message.body).id))
+        } else {
+          setMessageServer((prev) => [...prev, { ...JSON.parse(message.body) }])
+
+          editLastSender(JSON.parse(message.body))
+
+        }
       })
+
     }
     if (subscription) {
       clientSocket.current.unsubscribe()
@@ -33,5 +41,5 @@ export function useWebsocket() {
   const editLastSender = (msg) => {
     setLastSender(msg.from);
   }
-  return { lastSender, messageServer, setMessageServer }
+  return { lastSender, messageServer, setMessageServer, messageDeleted }
 }

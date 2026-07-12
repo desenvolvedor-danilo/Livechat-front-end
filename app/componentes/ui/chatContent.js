@@ -2,47 +2,18 @@
 "use client"
 import { useLoadMessages } from "../custom-hooks/useLoadMessages";
 import { useMessage } from "../custom-hooks/useMessage";
-import { useWebsocket } from "../custom-hooks/useWebsocket";
 import NavBar from "./navBar.js";
 import { hidedOrShowed } from "@/app/componentes/functions/hidedOrShowed";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ChooseElementType } from "../utils/ChooseElementType";
 import { TrashIcon } from "lucide-react";
 export default function ChatContent() {
-  const { messageServer, setMessageServer } = useWebsocket()
   const { editMessage, sendMessage, clientMessage, uploadFiles, startRecorder, stopRecorder, voiceEndRecording, isSelectedFile, clicked, timeFormated, recording } = useMessage();
   const open = useRef()
-  const { messages, setMessages } = useLoadMessages()
+  const { messages, messageServer, deleteMessage, deleteMessageDatabase, messagesEndRef } = useLoadMessages()
   const { showUp, scrollRef } = hidedOrShowed()
-  const messagesEndRef = useRef(null)
   const [openMenuId, setOpenMenuId] = useState(null)
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "auto",
-      block: "end"
-    })
-  }, [messages, messageServer])
-  const deleteMessage = (id) => {
-    messages.map((msg) => {
-      if (msg.id === id) {
-        fetch("/private-messages/delete?id=" + id, {
-          "method": "DELETE",
-        }).then((res) => console.log(res.text()))
-      }
-    })
 
-    messageServer.map((msg) => {
-      if (msg.id === id) {
-        fetch("/private-messages/delete?id=" + id, {
-          "method": "DELETE",
-        }).then((res) => console.log(res.text()))
-      }
-    })
-    const newListMessages = messages.filter((msg) => msg.id !== id);
-    setMessages(newListMessages)
-    const newListMessagesServer = messageServer.filter(msg => msg.id !== id)
-    setMessageServer(newListMessagesServer)
-  }
   return (
     <main>
       <div className="w-full chat-container">
@@ -53,22 +24,19 @@ export default function ChatContent() {
         <div id="chat" ref={scrollRef} onScroll={showUp} className=" flex flex-col break-words message-container">
 
           {
-            Array.isArray(messages) &&
-            messages.map((msg, index) => (
-              (msg.from === localStorage.getItem("email") || msg.to === localStorage.getItem("email")) &&
-              < div key={index} className={msg.from == localStorage.getItem("email") ? "msg-sent" : "msg-received"} > <div className={msg.from == localStorage.getItem("email") ? "username-sent" : "username-received"}>
 
-                <button onClick={() => setOpenMenuId(openMenuId === msg.id ? null : msg.id)} className="flex flex-col items-center gap-0.5 items-end w-full h-full rounded-full hover:bg-white-100 transition-colors">
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                </button>
+            Array.isArray(messages) &&
+            messages.map((msg) => (
+
+              (msg.from === localStorage.getItem("email") || msg.to === localStorage.getItem("email")) &&
+              < div key={msg.id} className={msg.from == localStorage.getItem("email") ? "msg-sent" : "msg-received"} > <div className={msg.from == localStorage.getItem("email") ? "username-sent" : "username-received"}>
+
                 {openMenuId === msg.id && (
                   <div className="relative w-full">
                     <div className="absolute opacity-75  text-black bg-white  rounded-lg  overflow-hidden">
                       <button
                         onClick={() => {
-                          deleteMessage(msg.id)
+                          deleteMessageDatabase(msg.id)
                           setOpenMenuId(null)
                         }}
                         className="px-1 py-1 text-sm hover:bg-gray-100 text-right"
@@ -78,39 +46,60 @@ export default function ChatContent() {
                     </div>
                   </div>
                 )}
+
+                {
+                  msg.from === localStorage.getItem("email") &&
+                  <button onClick={() => setOpenMenuId(openMenuId === msg.id ? null : msg.id)} className="flex flex-col items-center gap-0.5 items-end w-full h-full rounded-full hover:bg-white-100 transition-colors">
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                  </button>
+                }
 
                 {"~ " + msg.user}</div>{msg.message ? msg.message : ChooseElementType(msg.url)} < div className={msg.from == localStorage.getItem("email") ? "timestamp-sent" : "timestamp-received"} > {msg.time}</div></div>
             ))
           }
           {
-            messageServer.map((msg, index) => (
-              <div key={index} className={msg.from == localStorage.getItem("email") ? "msg-sent" : "msg-received"}><div className={msg.from == localStorage.getItem("email") ? "username-sent" : "username-received"}>
 
-                {openMenuId === msg.id && (
+            Array.isArray(messageServer) &&
+            messageServer.map((msg) => (
+
+              <div key={msg.id} className={msg.from == localStorage.getItem("email") ? "msg-sent" : "msg-received"}><div className={msg.from == localStorage.getItem("email") ? "username-sent" : "username-received"}>
+
+                {(openMenuId === msg.id) && (
                   <div className="relative w-full">
                     <div className="absolute opacity-75 text-black bg-white  rounded-lg  overflow-hidden">
                       <button
                         onClick={() => {
                           deleteMessage(msg.id)
+
                           setOpenMenuId(null)
                         }}
-                        className="px-1 py-1 text-sm hover:bg-gray-100 text-right"
+                        className="px-0 py-0 text-sm hover:bg-gray-100 text-right"
                       >
                         <TrashIcon size={22} />
                       </button>
                     </div>
                   </div>
                 )}
-                <button onClick={() => setOpenMenuId(openMenuId === msg.id ? null : msg.id)} className="flex flex-col items-center gap-0.5 items-end w-full h-full rounded-full hover:bg-white-100 transition-colors">
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                  <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
-                </button>
+
+                {
+                  msg.from === localStorage.getItem("email") &&
+                  < button onClick={() =>
+                    setOpenMenuId(openMenuId === msg.id ? null : msg.id)
 
 
+                  } className="flex flex-col items-center gap-0.5 items-end w-full h-full rounded-full hover:bg-white-100 transition-colors">
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                    <span className={msg.from === localStorage.getItem("email") ? "w-0.5 h-0.5 bg-white rounded-full" : "w-0.5 h-0.5 bg-black rounded-full"}></span>
+                  </button>
+                }
 
-                {"~ " + msg.user}</div>{!msg.message
-                  ? ChooseElementType(msg.urlFile) : msg.message}<div className={msg.from == localStorage.getItem("email") ? "timestamp-sent" : "timestamp-received"}>{msg.createdAt} </div></div>
+
+                {"~ " + msg.user}</div>{
+                  !msg.message
+                    ? ChooseElementType(msg.urlFile) : msg.message}<div className={msg.from == localStorage.getItem("email") ? "timestamp-sent" : "timestamp-received"}>{msg.createdAt} </div></div>
             ))
           }
           <div ref={messagesEndRef}></div>
