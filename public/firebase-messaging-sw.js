@@ -13,18 +13,36 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+// messaging.onBackgroundMessage((payload) => {
+// 	console.log("[SW] Push recebido:", payload);
+//
+// 	const link =
+// 		payload.fcmOptions?.link ||
+// 		"https://speakflowchat.vercel.app";
+// 	console.log("[SW] LINK EXTRAÍDO:", link);
+// 	self.registration.showNotification(payload.notification.title, {
+// 		body: payload.notification.body,
+// 		icon: "/speakflow.png",
+// 		data: {
+// 			link: link,
+// 		},
+// 	});
+// });
 messaging.onBackgroundMessage((payload) => {
 	console.log("[SW] Push recebido:", payload);
 
+	const title = payload.data?.title || "SpeakFlow";
+	const body = payload.data?.body || "Nova mensagem";
+
 	const link =
-		payload.fcmOptions?.link ||
+		payload.data?.link ||
 		"https://speakflowchat.vercel.app";
-	console.log("[SW] LINK EXTRAÍDO:", link);
-	self.registration.showNotification(payload.notification.title, {
-		body: payload.notification.body,
+
+	return self.registration.showNotification(title, {
+		body,
 		icon: "/speakflow.png",
 		data: {
-			link: link,
+			link,
 		},
 	});
 });
