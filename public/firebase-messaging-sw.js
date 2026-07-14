@@ -38,18 +38,16 @@ messaging.onBackgroundMessage((payload) => {
 		payload.data?.link ||
 		"https://speakflowchat.vercel.app";
 
-	const options = {
+	return self.registration.showNotification(title, {
 		body,
 		icon: "/speakflow.png",
 		data: {
+			image: payload.data?.image || null,
 			link,
 		},
-	}
-	if (payload.data?.image) {
-		options.image = payload.data.image
-	}
-	return self.registration.showNotification(title, options);
-})
+	});
+});
+
 self.addEventListener("notificationclick", (event) => {
 	event.notification.close();
 
