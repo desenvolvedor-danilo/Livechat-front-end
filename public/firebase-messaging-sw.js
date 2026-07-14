@@ -13,57 +13,58 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-// messaging.onBackgroundMessage((payload) => {
-// 	console.log("[SW] Push recebido:", payload);
-//
-// 	const link =
-// 		payload.fcmOptions?.link ||
-// 		"https://speakflowchat.vercel.app";
-// 	console.log("[SW] LINK EXTRAÍDO:", link);
-// 	self.registration.showNotification(payload.notification.title, {
-// 		body: payload.notification.body,
-// 		icon: "/speakflow.png",
-// 		data: {
-// 			link: link,
-// 		},
-// 	});
-// });
 messaging.onBackgroundMessage((payload) => {
-	console.log("[SW] Push recebido:", payload);
+	// 	console.log("[SW] Push recebido:", payload);
+	//
+	const link =
+		payload.fcmOptions?.link ||
+		"https://speakflowchat.vercel.app";
+	// 	console.log("[SW] LINK EXTRAÍDO:", link);
+	self.registration.showNotification(payload.notification.title, {
+		// 		body: payload.notification.body,
+		// 		icon: "/speakflow.png",
+		data: {
+			link: link,
+		}
+	})
 
-	// const title = payload.data?.title || "SpeakFlow";
-	// const body = payload.data?.body || "Nova mensagem";
-	//
-	// const link =
-	// 	payload.data?.link ||
-	// 	"https://speakflowchat.vercel.app";
-	//
-	// return self.registration.showNotification(title, {
-	// 	body,
-	// 	icon: "/speakflow.png",
-	// 	data: {
-	// 		link,
-	// 	},
-	// });
 });
+//messaging.onBackgroundMessage((payload) => {
+//console.log("[SW] Push recebido:", payload);
 
-// self.addEventListener("notificationclick", (event) => {
-// 	event.notification.close();
+// const title = payload.data?.title || "SpeakFlow";
+// const body = payload.data?.body || "Nova mensagem";
 //
-// 	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+// const link =
+// 	payload.data?.link ||
+// 	"https://speakflowchat.vercel.app";
 //
-// 	event.waitUntil(
-// 		clients.matchAll({
-// 			type: "window",
-// 			includeUncontrolled: true,
-// 		}).then((clientList) => {
-// 			for (const client of clientList) {
-// 				return client.focus().then(() => {
-// 					return client.navigate(link);
-// 				});
-// 			}
-//
-// 			return clients.openWindow(link);
-// 		})
-// 	);
+// return self.registration.showNotification(title, {
+// 	body,
+// 	icon: "/speakflow.png",
+// 	data: {
+// 		link,
+// 	},
 // });
+//});
+
+self.addEventListener("notificationclick", (event) => {
+	event.notification.close();
+
+	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+
+	event.waitUntil(
+		clients.matchAll({
+			type: "window",
+			includeUncontrolled: true,
+		}).then((clientList) => {
+			for (const client of clientList) {
+				return client.focus().then(() => {
+					return client.navigate(link);
+				});
+			}
+
+			return clients.openWindow(link);
+		})
+	);
+});
