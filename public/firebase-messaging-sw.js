@@ -21,8 +21,8 @@ messaging.onBackgroundMessage((payload) => {
 		"https://speakflowchat.vercel.app";
 	// 	console.log("[SW] LINK EXTRAÍDO:", link);
 	self.registration.showNotification(payload.notification.title, {
-		// 		body: payload.notification.body,
-		// 		icon: "/speakflow.png",
+		body: payload.notification.body,
+		icon: "/speakflow.png",
 		data: {
 			link: link,
 		}
@@ -48,23 +48,52 @@ messaging.onBackgroundMessage((payload) => {
 // });
 //});
 
+// self.addEventListener("notificationclick", (event) => {
+// 	event.notification.close();
+//
+// 	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+//
+// 	event.waitUntil(
+// 		clients.matchAll({
+// 			type: "window",
+// 			includeUncontrolled: true,
+// 		}).then((clientList) => {
+// 			for (const client of clientList) {
+// 				return client.navigate(link);
+// 				return client.focus().then(() => {
+//
+// 				});
+// 			}
+//
+// 			return clients.openWindow(link);
+// 		})
+// 	);
+// });
 self.addEventListener("notificationclick", (event) => {
 	event.notification.close();
 
-	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+	const link =
+		event.notification.data?.link ||
+		"https://speakflowchat.vercel.app";
 
 	event.waitUntil(
-		clients.matchAll({
-			type: "window",
-			includeUncontrolled: true,
-		}).then((clientList) => {
-			for (const client of clientList) {
-				return client.focus().then(() => {
-					return client.navigate(link);
-				});
-			}
+		clients
+			.matchAll({
+				type: "window",
+				includeUncontrolled: true,
+			})
+			.then(async (clientList) => {
+				for (const client of clientList) {
+					if ("navigate" in client) {
+						await client.navigate(link);
+					}
 
-			return clients.openWindow(link);
-		})
+					if ("focus" in client) {
+						return client.focus();
+					}
+				}
+
+				return clients.openWindow(link);
+			})
 	);
 });
