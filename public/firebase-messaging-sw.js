@@ -42,7 +42,6 @@ messaging.onBackgroundMessage((payload) => {
 		body,
 		icon: "/speakflow.png",
 		data: {
-			image: payload.data?.image || null,
 			link,
 		},
 	});
