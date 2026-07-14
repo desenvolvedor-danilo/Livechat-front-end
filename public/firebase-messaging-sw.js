@@ -31,39 +31,39 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
 	console.log("[SW] Push recebido:", payload);
 
-	const title = payload.data?.title || "SpeakFlow";
-	const body = payload.data?.body || "Nova mensagem";
-
-	const link =
-		payload.data?.link ||
-		"https://speakflowchat.vercel.app";
-
-	return self.registration.showNotification(title, {
-		body,
-		icon: "/speakflow.png",
-		data: {
-			link,
-		},
-	});
+	// const title = payload.data?.title || "SpeakFlow";
+	// const body = payload.data?.body || "Nova mensagem";
+	//
+	// const link =
+	// 	payload.data?.link ||
+	// 	"https://speakflowchat.vercel.app";
+	//
+	// return self.registration.showNotification(title, {
+	// 	body,
+	// 	icon: "/speakflow.png",
+	// 	data: {
+	// 		link,
+	// 	},
+	// });
 });
 
-self.addEventListener("notificationclick", (event) => {
-	event.notification.close();
-
-	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
-
-	event.waitUntil(
-		clients.matchAll({
-			type: "window",
-			includeUncontrolled: true,
-		}).then((clientList) => {
-			for (const client of clientList) {
-				return client.focus().then(() => {
-					return client.navigate(link);
-				});
-			}
-
-			return clients.openWindow(link);
-		})
-	);
-});
+// self.addEventListener("notificationclick", (event) => {
+// 	event.notification.close();
+//
+// 	const link = event.notification.data?.link || "https://speakflowchat.vercel.app";
+//
+// 	event.waitUntil(
+// 		clients.matchAll({
+// 			type: "window",
+// 			includeUncontrolled: true,
+// 		}).then((clientList) => {
+// 			for (const client of clientList) {
+// 				return client.focus().then(() => {
+// 					return client.navigate(link);
+// 				});
+// 			}
+//
+// 			return clients.openWindow(link);
+// 		})
+// 	);
+// });
