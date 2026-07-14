@@ -16,18 +16,18 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
 	// 	console.log("[SW] Push recebido:", payload);
 	//
-	const link =
-		payload.fcmOptions?.link ||
-		"https://speakflowchat.vercel.app";
-	// 	console.log("[SW] LINK EXTRAÍDO:", link);
-	self.registration.showNotification(payload.notification.title, {
-		body: payload.notification.body,
-		icon: "/speakflow.png",
-		data: {
-			link: link,
-		}
-	})
-
+	// 	const link =
+	// 		payload.fcmOptions?.link ||
+	// 		"https://speakflowchat.vercel.app";
+	// 	// 	console.log("[SW] LINK EXTRAÍDO:", link);
+	// 	self.registration.showNotification(payload.notification.title, {
+	// 		// body: payload.notification.body,
+	// 		// icon: "/speakflow.png",
+	// 		data: {
+	// 			link: link,
+	// 		}
+	// 	})
+	//
 });
 //messaging.onBackgroundMessage((payload) => {
 //console.log("[SW] Push recebido:", payload);
@@ -73,7 +73,7 @@ self.addEventListener("notificationclick", (event) => {
 	event.notification.close();
 
 	const link =
-		event.notification.data?.link ||
+		event.notification.fcmOptions?.link ||
 		"https://speakflowchat.vercel.app";
 
 	event.waitUntil(
