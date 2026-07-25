@@ -119,7 +119,7 @@ export default function ChatContent() {
                 <div className="relative w-1 h-1 rounded-lg p-0">
                   <div role="button" className="absolute 
                 bottom-[-20px] right-2 
-                md:top-1 md:left-2 md:bottom-auto md:right-auto 
+                sm:top-1 sm:bottom-auto  
                 bg-[#4b4ee8] text-white px-2 py-0 rounded-full" id="hiddenInput" onClick={() =>
                       open.current.click()
                     }>+</div>
