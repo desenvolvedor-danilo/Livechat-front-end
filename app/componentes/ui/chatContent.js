@@ -3,7 +3,7 @@
 import { useLoadMessages } from "../custom-hooks/useLoadMessages";
 import { useMessage } from "../custom-hooks/useMessage";
 import NavBar from "./navBar.js";
-import { hidedOrShowed } from "@/app/componentes/functions/hidedOrShowed";
+import { hidedOrShowed } from '../functions/hidedOrShowed.js'
 import { useRef, useState } from "react";
 import { ChooseElementType } from "../utils/ChooseElementType";
 import { TrashIcon } from "lucide-react";

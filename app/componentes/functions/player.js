@@ -12,6 +12,7 @@ export function Player({ src }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  console.log("Toque neste link", src)
 
   return (
     <>
