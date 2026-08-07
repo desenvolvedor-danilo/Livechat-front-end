@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { RefreshToken } from "../functions/refreshToken.js";
+import { RefreshToken } from "../functions/refreshToken";
 
 export function useNotifications() {
   const [notifications, setNotifications] = useState([])

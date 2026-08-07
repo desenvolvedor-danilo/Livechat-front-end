@@ -1,4 +1,4 @@
-import { RefreshToken } from "@/app/componentes/functions/refreshToken"
+import { RefreshToken } from "../functions/refreshToken"
 import { useEffect, useState } from "react"
 
 export function useConfiguration() {
