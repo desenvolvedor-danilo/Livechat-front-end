@@ -5,7 +5,7 @@ const nextConfig = {
   },
   async rewrites() {
     const BACKEND_URL = "https://speakflow.ddns.net"
-    const LOCAL_URL = "http://localhost:8080"
+    // const LOCAL_URL = "http://localhost:8080"
     // const URL_FILE = "https://livechat-0380.onrender.com"
     return [
       {
@@ -26,7 +26,7 @@ const nextConfig = {
         source: "/conversas/:path*",
         destination: BACKEND_URL + "/conversas/:path*",
 
-        //    destination: LOCAL_URL + "/conversas/:path*",
+        //destination: LOCAL_URL + "/conversas/:path*",
 
       },
 
@@ -41,7 +41,7 @@ const nextConfig = {
         source: "/files/:path*",
         destination: BACKEND_URL + "/files/:path*",
 
-        // destination: LOCAL_URL + "/files/:path*",
+        //destination: LOCAL_URL + "/files/:path*",
       },
     ];
   },
