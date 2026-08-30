@@ -5,13 +5,13 @@ const nextConfig = {
   },
   async rewrites() {
     const BACKEND_URL = "https://speakflow.ddns.net"
-    // const LOCAL_URL = "http://localhost:8080"
+    const LOCAL_URL = "http://localhost:8080"
     // const URL_FILE = "https://livechat-0380.onrender.com"
     return [
       {
         source: "/users/:path*",
         destination: BACKEND_URL + "/users/:path*",
-        //destination: LOCAL_URL + "/users/:path*",
+        // destination: LOCAL_URL + "/users/:path*",
 
       },
 
@@ -53,17 +53,25 @@ const nextConfig = {
       port: "8080",
       pathname: "**",
       search: ""
-    }
-    ],
+    },
+    {
 
-    remotePatterns: [{
       protocol: "https",
       hostname: "speakflow.ddns.net",
       //port: "8080",
       pathname: "**",
       search: ""
     }
-    ]
+    ],
+
+    // remotePatterns: [{
+    //   protocol: "https",
+    //   hostname: "speakflow.ddns.net",
+    //   //port: "8080",
+    //   pathname: "**",
+    //   search: ""
+    // }
+    // ]
   }
 
 }

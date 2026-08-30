@@ -21,17 +21,30 @@ export default function Home() {
 
             <input type={visibility ? "text" : "password"} id="senha" placeholder="Digite sua senha" className="w-full rounded-lg border border-gray-300 px-3 py-2 pr-10" name="password" onKeyDown={enter} value={login.password} onChange={handleState} />
 
+
+
             <button type="button" className="absolute top-1/2 -translate-y-1/2 right-3" onClick={handleVisibility}>{visibility ? <EyeIcon size={20} /> : <EyeOffIcon size={20} />
             }</button>
+          </div>
+
+          <div className="text-right form-group text-[#4a4ee0] active:scale-110">
+            <Link href={"/verificar/email"} className="text-sm font-black">Esqueci a senha</Link>
           </div>
           {error &&
             <aside className="text-center mt-[-10px] p-[5px]" ><h5 className="text-base text-[#4a4ee0] font-black">{error}</h5></aside>
           }
+
           <button id="login" className="btn btn-connect" type="button" onClick={fetchLogin}>Entrar</button>
+
+
         </form>
-        <div className="text-center form-group text-[#4a4ee0] ">
+
+        <div className="text-center form-group active:scale-110 text-[#4a4ee0] ">
           <Link className="text-xl font-black" href="/cadastro">Não tem uma conta? Inscreva-se</Link>
+
+
         </div>
+
       </div>
     </>
   );
